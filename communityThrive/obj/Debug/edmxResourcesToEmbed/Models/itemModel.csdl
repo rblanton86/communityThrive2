@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="communityThriveDBModel5" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ctCategory">
+    <Key>
+      <PropertyRef Name="categoryID" />
+    </Key>
+    <Property Name="categoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dateAdded" Type="DateTime" Precision="3" />
+    <Property Name="parentID" Type="Int32" />
+    <Property Name="isUserDefined" Type="Boolean" />
+    <Property Name="isDeleted" Type="Boolean" />
+    <Property Name="catDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ctInventories" Relationship="Self.FK_ctInventory_ctCategory" FromRole="ctCategory" ToRole="ctInventory" />
+    <NavigationProperty Name="ctItems" Relationship="Self.FK_ctItem_ctCategory" FromRole="ctCategory" ToRole="ctItem" />
+    <NavigationProperty Name="ctStocks" Relationship="Self.FK_ctStock_ctCategory" FromRole="ctCategory" ToRole="ctStock" />
+  </EntityType>
+  <EntityType Name="ctDonation">
+    <Key>
+      <PropertyRef Name="donationID" />
+    </Key>
+    <Property Name="donationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="eventID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ctReceipts" Relationship="Self.FK__ctReceipt__itemL__5812160E" FromRole="ctDonation" ToRole="ctReceipt" />
+    <NavigationProperty Name="ctReceipts1" Relationship="Self.FK__ctReceipt__itemL__7A672E12" FromRole="ctDonation" ToRole="ctReceipt" />
+  </EntityType>
+  <EntityType Name="ctInventory">
+    <Key>
+      <PropertyRef Name="inventoryID" />
+    </Key>
+    <Property Name="inventoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="donationID" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="categoryID" Type="Int32" />
+    <NavigationProperty Name="ctCategory" Relationship="Self.FK_ctInventory_ctCategory" FromRole="ctInventory" ToRole="ctCategory" />
+    <NavigationProperty Name="ctItems" Relationship="Self.FK_ctItem_ctInventory" FromRole="ctInventory" ToRole="ctItem" />
+    <NavigationProperty Name="ctStocks" Relationship="Self.FK_ctStock_ctInventory" FromRole="ctInventory" ToRole="ctStock" />
+  </EntityType>
+  <EntityType Name="ctItem">
+    <Key>
+      <PropertyRef Name="itemID" />
+    </Key>
+    <Property Name="itemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="itemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="itemPrice" Type="Int32" />
+    <Property Name="itemDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="itemUPC" Type="Int32" />
+    <Property Name="iventoryID" Type="Int32" />
+    <Property Name="categoryID" Type="Int32" />
+    <NavigationProperty Name="ctCategory" Relationship="Self.FK_ctItem_ctCategory" FromRole="ctItem" ToRole="ctCategory" />
+    <NavigationProperty Name="ctInventory" Relationship="Self.FK_ctItem_ctInventory" FromRole="ctItem" ToRole="ctInventory" />
+    <NavigationProperty Name="ctStocks" Relationship="Self.FK_ctStock_ctItem" FromRole="ctItem" ToRole="ctStock" />
+  </EntityType>
+  <EntityType Name="ctReceipt">
+    <Key>
+      <PropertyRef Name="ctReceiptID" />
+    </Key>
+    <Property Name="ctReceiptID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="itemList" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ctDonation" Relationship="Self.FK__ctReceipt__itemL__5812160E" FromRole="ctReceipt" ToRole="ctDonation" />
+    <NavigationProperty Name="ctDonation1" Relationship="Self.FK__ctReceipt__itemL__7A672E12" FromRole="ctReceipt" ToRole="ctDonation" />
+  </EntityType>
+  <EntityType Name="ctStock">
+    <Key>
+      <PropertyRef Name="stockID" />
+    </Key>
+    <Property Name="stockID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="itemID" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="locationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="categoryID" Type="Int32" />
+    <Property Name="inventoryID" Type="Int32" />
+    <NavigationProperty Name="ctCategory" Relationship="Self.FK_ctStock_ctCategory" FromRole="ctStock" ToRole="ctCategory" />
+    <NavigationProperty Name="ctInventory" Relationship="Self.FK_ctStock_ctInventory" FromRole="ctStock" ToRole="ctInventory" />
+    <NavigationProperty Name="ctItem" Relationship="Self.FK_ctStock_ctItem" FromRole="ctStock" ToRole="ctItem" />
+  </EntityType>
+  <Association Name="FK_ctInventory_ctCategory">
+    <End Role="ctCategory" Type="Self.ctCategory" Multiplicity="0..1" />
+    <End Role="ctInventory" Type="Self.ctInventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctCategory">
+        <PropertyRef Name="categoryID" />
+      </Principal>
+      <Dependent Role="ctInventory">
+        <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctItem_ctCategory">
+    <End Role="ctCategory" Type="Self.ctCategory" Multiplicity="0..1" />
+    <End Role="ctItem" Type="Self.ctItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctCategory">
+        <PropertyRef Name="categoryID" />
+      </Principal>
+      <Dependent Role="ctItem">
+        <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctStock_ctCategory">
+    <End Role="ctCategory" Type="Self.ctCategory" Multiplicity="0..1" />
+    <End Role="ctStock" Type="Self.ctStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctCategory">
+        <PropertyRef Name="categoryID" />
+      </Principal>
+      <Dependent Role="ctStock">
+        <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctReceipt__itemL__5812160E">
+    <End Role="ctDonation" Type="Self.ctDonation" Multiplicity="1" />
+    <End Role="ctReceipt" Type="Self.ctReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctDonation">
+        <PropertyRef Name="donationID" />
+      </Principal>
+      <Dependent Role="ctReceipt">
+        <PropertyRef Name="itemList" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctReceipt__itemL__7A672E12">
+    <End Role="ctDonation" Type="Self.ctDonation" Multiplicity="1" />
+    <End Role="ctReceipt" Type="Self.ctReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctDonation">
+        <PropertyRef Name="donationID" />
+      </Principal>
+      <Dependent Role="ctReceipt">
+        <PropertyRef Name="itemList" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctItem_ctInventory">
+    <End Role="ctInventory" Type="Self.ctInventory" Multiplicity="0..1" />
+    <End Role="ctItem" Type="Self.ctItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctInventory">
+        <PropertyRef Name="inventoryID" />
+      </Principal>
+      <Dependent Role="ctItem">
+        <PropertyRef Name="iventoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctStock_ctInventory">
+    <End Role="ctInventory" Type="Self.ctInventory" Multiplicity="0..1" />
+    <End Role="ctStock" Type="Self.ctStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctInventory">
+        <PropertyRef Name="inventoryID" />
+      </Principal>
+      <Dependent Role="ctStock">
+        <PropertyRef Name="inventoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctStock_ctItem">
+    <End Role="ctItem" Type="Self.ctItem" Multiplicity="0..1" />
+    <End Role="ctStock" Type="Self.ctStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctItem">
+        <PropertyRef Name="itemID" />
+      </Principal>
+      <Dependent Role="ctStock">
+        <PropertyRef Name="itemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="communityThriveDBEntities5" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ctCategories" EntityType="Self.ctCategory" />
+    <EntitySet Name="ctDonations" EntityType="Self.ctDonation" />
+    <EntitySet Name="ctInventories" EntityType="Self.ctInventory" />
+    <EntitySet Name="ctItems" EntityType="Self.ctItem" />
+    <EntitySet Name="ctReceipts" EntityType="Self.ctReceipt" />
+    <EntitySet Name="ctStocks" EntityType="Self.ctStock" />
+    <AssociationSet Name="FK_ctInventory_ctCategory" Association="Self.FK_ctInventory_ctCategory">
+      <End Role="ctCategory" EntitySet="ctCategories" />
+      <End Role="ctInventory" EntitySet="ctInventories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctItem_ctCategory" Association="Self.FK_ctItem_ctCategory">
+      <End Role="ctCategory" EntitySet="ctCategories" />
+      <End Role="ctItem" EntitySet="ctItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctStock_ctCategory" Association="Self.FK_ctStock_ctCategory">
+      <End Role="ctCategory" EntitySet="ctCategories" />
+      <End Role="ctStock" EntitySet="ctStocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctReceipt__itemL__5812160E" Association="Self.FK__ctReceipt__itemL__5812160E">
+      <End Role="ctDonation" EntitySet="ctDonations" />
+      <End Role="ctReceipt" EntitySet="ctReceipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctReceipt__itemL__7A672E12" Association="Self.FK__ctReceipt__itemL__7A672E12">
+      <End Role="ctDonation" EntitySet="ctDonations" />
+      <End Role="ctReceipt" EntitySet="ctReceipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctItem_ctInventory" Association="Self.FK_ctItem_ctInventory">
+      <End Role="ctInventory" EntitySet="ctInventories" />
+      <End Role="ctItem" EntitySet="ctItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctStock_ctInventory" Association="Self.FK_ctStock_ctInventory">
+      <End Role="ctInventory" EntitySet="ctInventories" />
+      <End Role="ctStock" EntitySet="ctStocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctStock_ctItem" Association="Self.FK_ctStock_ctItem">
+      <End Role="ctItem" EntitySet="ctItems" />
+      <End Role="ctStock" EntitySet="ctStocks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

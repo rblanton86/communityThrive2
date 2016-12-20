@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="communityThriveDBModel3StoreContainer" CdmEntityContainer="communityThriveDBEntities3">
+    <EntitySetMapping Name="ctFamilies">
+      <EntityTypeMapping TypeName="communityThriveDBModel3.ctFamily">
+        <MappingFragment StoreEntitySet="ctFamily">
+          <ScalarProperty Name="familyID" ColumnName="familyID" />
+          <ScalarProperty Name="recipientID" ColumnName="recipientID" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="isSpouse" ColumnName="isSpouse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctRecipients">
+      <EntityTypeMapping TypeName="communityThriveDBModel3.ctRecipient">
+        <MappingFragment StoreEntitySet="ctRecipient">
+          <ScalarProperty Name="recipientID" ColumnName="recipientID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctRecipientAddresses">
+      <EntityTypeMapping TypeName="communityThriveDBModel3.ctRecipientAddress">
+        <MappingFragment StoreEntitySet="ctRecipientAddress">
+          <ScalarProperty Name="ctRecipientAddressID" ColumnName="ctRecipientAddressID" />
+          <ScalarProperty Name="recipientID" ColumnName="recipientID" />
+          <ScalarProperty Name="streetName" ColumnName="streetName" />
+          <ScalarProperty Name="cityName" ColumnName="cityName" />
+          <ScalarProperty Name="stateName" ColumnName="stateName" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctRecipientDonationTrackings">
+      <EntityTypeMapping TypeName="communityThriveDBModel3.ctRecipientDonationTracking">
+        <MappingFragment StoreEntitySet="ctRecipientDonationTracking">
+          <ScalarProperty Name="donationTrackingID" ColumnName="donationTrackingID" />
+          <ScalarProperty Name="recipientID" ColumnName="recipientID" />
+          <ScalarProperty Name="donationDate" ColumnName="donationDate" />
+          <ScalarProperty Name="eventsID" ColumnName="eventsID" />
+          <ScalarProperty Name="stockID" ColumnName="stockID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

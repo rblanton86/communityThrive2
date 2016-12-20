@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="communityThriveDBModel3" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ctFamily">
+    <Key>
+      <PropertyRef Name="familyID" />
+    </Key>
+    <Property Name="familyID" Type="Int32" Nullable="false" />
+    <Property Name="recipientID" Type="Int32" Nullable="false" />
+    <Property Name="gender" Type="Int32" />
+    <Property Name="age" Type="Int32" />
+    <Property Name="isSpouse" Type="Boolean" />
+    <NavigationProperty Name="ctRecipient" Relationship="Self.FK_ctFamily_recipientID" FromRole="ctFamily" ToRole="ctRecipient" />
+  </EntityType>
+  <EntityType Name="ctRecipient">
+    <Key>
+      <PropertyRef Name="recipientID" />
+    </Key>
+    <Property Name="recipientID" Type="Int32" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ctFamilies" Relationship="Self.FK_ctFamily_recipientID" FromRole="ctRecipient" ToRole="ctFamily" />
+    <NavigationProperty Name="ctRecipientAddresses" Relationship="Self.FK_ctRecipientAddress_recipientID" FromRole="ctRecipient" ToRole="ctRecipientAddress" />
+    <NavigationProperty Name="ctRecipientDonationTrackings" Relationship="Self.FK_ctRecipientDonationTracking_recipientID" FromRole="ctRecipient" ToRole="ctRecipientDonationTracking" />
+  </EntityType>
+  <EntityType Name="ctRecipientAddress">
+    <Key>
+      <PropertyRef Name="ctRecipientAddressID" />
+    </Key>
+    <Property Name="ctRecipientAddressID" Type="Int32" Nullable="false" />
+    <Property Name="recipientID" Type="Int32" Nullable="false" />
+    <Property Name="streetName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="cityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="stateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="zipcode" Type="Int32" />
+    <NavigationProperty Name="ctRecipient" Relationship="Self.FK_ctRecipientAddress_recipientID" FromRole="ctRecipientAddress" ToRole="ctRecipient" />
+  </EntityType>
+  <EntityType Name="ctRecipientDonationTracking">
+    <Key>
+      <PropertyRef Name="donationTrackingID" />
+    </Key>
+    <Property Name="donationTrackingID" Type="Int32" Nullable="false" />
+    <Property Name="recipientID" Type="Int32" Nullable="false" />
+    <Property Name="donationDate" Type="DateTime" Precision="3" />
+    <Property Name="eventsID" Type="Int32" Nullable="false" />
+    <Property Name="stockID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ctRecipient" Relationship="Self.FK_ctRecipientDonationTracking_recipientID" FromRole="ctRecipientDonationTracking" ToRole="ctRecipient" />
+  </EntityType>
+  <Association Name="FK_ctFamily_recipientID">
+    <End Role="ctRecipient" Type="Self.ctRecipient" Multiplicity="1" />
+    <End Role="ctFamily" Type="Self.ctFamily" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctRecipient">
+        <PropertyRef Name="recipientID" />
+      </Principal>
+      <Dependent Role="ctFamily">
+        <PropertyRef Name="recipientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctRecipientAddress_recipientID">
+    <End Role="ctRecipient" Type="Self.ctRecipient" Multiplicity="1" />
+    <End Role="ctRecipientAddress" Type="Self.ctRecipientAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctRecipient">
+        <PropertyRef Name="recipientID" />
+      </Principal>
+      <Dependent Role="ctRecipientAddress">
+        <PropertyRef Name="recipientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctRecipientDonationTracking_recipientID">
+    <End Role="ctRecipient" Type="Self.ctRecipient" Multiplicity="1" />
+    <End Role="ctRecipientDonationTracking" Type="Self.ctRecipientDonationTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctRecipient">
+        <PropertyRef Name="recipientID" />
+      </Principal>
+      <Dependent Role="ctRecipientDonationTracking">
+        <PropertyRef Name="recipientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="communityThriveDBEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ctFamilies" EntityType="Self.ctFamily" />
+    <EntitySet Name="ctRecipients" EntityType="Self.ctRecipient" />
+    <EntitySet Name="ctRecipientAddresses" EntityType="Self.ctRecipientAddress" />
+    <EntitySet Name="ctRecipientDonationTrackings" EntityType="Self.ctRecipientDonationTracking" />
+    <AssociationSet Name="FK_ctFamily_recipientID" Association="Self.FK_ctFamily_recipientID">
+      <End Role="ctRecipient" EntitySet="ctRecipients" />
+      <End Role="ctFamily" EntitySet="ctFamilies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctRecipientAddress_recipientID" Association="Self.FK_ctRecipientAddress_recipientID">
+      <End Role="ctRecipient" EntitySet="ctRecipients" />
+      <End Role="ctRecipientAddress" EntitySet="ctRecipientAddresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctRecipientDonationTracking_recipientID" Association="Self.FK_ctRecipientDonationTracking_recipientID">
+      <End Role="ctRecipient" EntitySet="ctRecipients" />
+      <End Role="ctRecipientDonationTracking" EntitySet="ctRecipientDonationTrackings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

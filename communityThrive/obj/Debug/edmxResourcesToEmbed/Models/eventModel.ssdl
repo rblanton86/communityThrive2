@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="communityThriveDBModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ctDonation">
+    <Key>
+      <PropertyRef Name="donationID" />
+    </Key>
+    <Property Name="donationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="dateSubmitted" Type="datetime" Nullable="false" />
+    <Property Name="describe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="notes" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="eventID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ctEvent">
+    <Key>
+      <PropertyRef Name="eventsID" />
+    </Key>
+    <Property Name="eventsID" Type="int" Nullable="false" />
+    <Property Name="eventTypeID" Type="int" Nullable="false" />
+    <Property Name="eventDescription" Type="varchar(max)" />
+    <Property Name="eventDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ctEventType">
+    <Key>
+      <PropertyRef Name="eventTypeID" />
+    </Key>
+    <Property Name="eventTypeID" Type="int" Nullable="false" />
+    <Property Name="eventTypeDescription" Type="nvarchar(max)" />
+    <Property Name="designation" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ctRecipientDonationTracking">
+    <Key>
+      <PropertyRef Name="donationTrackingID" />
+    </Key>
+    <Property Name="donationTrackingID" Type="int" Nullable="false" />
+    <Property Name="recipientID" Type="int" Nullable="false" />
+    <Property Name="donationDate" Type="datetime" />
+    <Property Name="eventsID" Type="int" Nullable="false" />
+    <Property Name="stockID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ctDonation_ctEvent">
+    <End Role="ctEvent" Type="Self.ctEvent" Multiplicity="1" />
+    <End Role="ctDonation" Type="Self.ctDonation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctEvent">
+        <PropertyRef Name="eventsID" />
+      </Principal>
+      <Dependent Role="ctDonation">
+        <PropertyRef Name="eventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctEvent_eventTypeID">
+    <End Role="ctEventType" Type="Self.ctEventType" Multiplicity="1" />
+    <End Role="ctEvent" Type="Self.ctEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctEventType">
+        <PropertyRef Name="eventTypeID" />
+      </Principal>
+      <Dependent Role="ctEvent">
+        <PropertyRef Name="eventTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctRecipientDonationTracking_eventsID">
+    <End Role="ctEvent" Type="Self.ctEvent" Multiplicity="1" />
+    <End Role="ctRecipientDonationTracking" Type="Self.ctRecipientDonationTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctEvent">
+        <PropertyRef Name="eventsID" />
+      </Principal>
+      <Dependent Role="ctRecipientDonationTracking">
+        <PropertyRef Name="eventsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="communityThriveDBModel2StoreContainer">
+    <EntitySet Name="ctDonation" EntityType="Self.ctDonation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctEvent" EntityType="Self.ctEvent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctEventType" EntityType="Self.ctEventType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctRecipientDonationTracking" EntityType="Self.ctRecipientDonationTracking" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ctDonation_ctEvent" Association="Self.FK_ctDonation_ctEvent">
+      <End Role="ctEvent" EntitySet="ctEvent" />
+      <End Role="ctDonation" EntitySet="ctDonation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctEvent_eventTypeID" Association="Self.FK_ctEvent_eventTypeID">
+      <End Role="ctEventType" EntitySet="ctEventType" />
+      <End Role="ctEvent" EntitySet="ctEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctRecipientDonationTracking_eventsID" Association="Self.FK_ctRecipientDonationTracking_eventsID">
+      <End Role="ctEvent" EntitySet="ctEvent" />
+      <End Role="ctRecipientDonationTracking" EntitySet="ctRecipientDonationTracking" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

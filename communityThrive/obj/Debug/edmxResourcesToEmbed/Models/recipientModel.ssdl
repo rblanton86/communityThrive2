@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="communityThriveDBModel3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ctFamily">
+    <Key>
+      <PropertyRef Name="familyID" />
+    </Key>
+    <Property Name="familyID" Type="int" Nullable="false" />
+    <Property Name="recipientID" Type="int" Nullable="false" />
+    <Property Name="gender" Type="int" />
+    <Property Name="age" Type="int" />
+    <Property Name="isSpouse" Type="bit" />
+  </EntityType>
+  <EntityType Name="ctRecipient">
+    <Key>
+      <PropertyRef Name="recipientID" />
+    </Key>
+    <Property Name="recipientID" Type="int" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="gender" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ctRecipientAddress">
+    <Key>
+      <PropertyRef Name="ctRecipientAddressID" />
+    </Key>
+    <Property Name="ctRecipientAddressID" Type="int" Nullable="false" />
+    <Property Name="recipientID" Type="int" Nullable="false" />
+    <Property Name="streetName" Type="nvarchar" MaxLength="100" />
+    <Property Name="cityName" Type="nvarchar" MaxLength="50" />
+    <Property Name="stateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="zipcode" Type="int" />
+  </EntityType>
+  <EntityType Name="ctRecipientDonationTracking">
+    <Key>
+      <PropertyRef Name="donationTrackingID" />
+    </Key>
+    <Property Name="donationTrackingID" Type="int" Nullable="false" />
+    <Property Name="recipientID" Type="int" Nullable="false" />
+    <Property Name="donationDate" Type="datetime" />
+    <Property Name="eventsID" Type="int" Nullable="false" />
+    <Property Name="stockID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ctFamily_recipientID">
+    <End Role="ctRecipient" Type="Self.ctRecipient" Multiplicity="1" />
+    <End Role="ctFamily" Type="Self.ctFamily" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctRecipient">
+        <PropertyRef Name="recipientID" />
+      </Principal>
+      <Dependent Role="ctFamily">
+        <PropertyRef Name="recipientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctRecipientAddress_recipientID">
+    <End Role="ctRecipient" Type="Self.ctRecipient" Multiplicity="1" />
+    <End Role="ctRecipientAddress" Type="Self.ctRecipientAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctRecipient">
+        <PropertyRef Name="recipientID" />
+      </Principal>
+      <Dependent Role="ctRecipientAddress">
+        <PropertyRef Name="recipientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctRecipientDonationTracking_recipientID">
+    <End Role="ctRecipient" Type="Self.ctRecipient" Multiplicity="1" />
+    <End Role="ctRecipientDonationTracking" Type="Self.ctRecipientDonationTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctRecipient">
+        <PropertyRef Name="recipientID" />
+      </Principal>
+      <Dependent Role="ctRecipientDonationTracking">
+        <PropertyRef Name="recipientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="communityThriveDBModel3StoreContainer">
+    <EntitySet Name="ctFamily" EntityType="Self.ctFamily" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctRecipient" EntityType="Self.ctRecipient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctRecipientAddress" EntityType="Self.ctRecipientAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctRecipientDonationTracking" EntityType="Self.ctRecipientDonationTracking" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ctFamily_recipientID" Association="Self.FK_ctFamily_recipientID">
+      <End Role="ctRecipient" EntitySet="ctRecipient" />
+      <End Role="ctFamily" EntitySet="ctFamily" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctRecipientAddress_recipientID" Association="Self.FK_ctRecipientAddress_recipientID">
+      <End Role="ctRecipient" EntitySet="ctRecipient" />
+      <End Role="ctRecipientAddress" EntitySet="ctRecipientAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctRecipientDonationTracking_recipientID" Association="Self.FK_ctRecipientDonationTracking_recipientID">
+      <End Role="ctRecipient" EntitySet="ctRecipient" />
+      <End Role="ctRecipientDonationTracking" EntitySet="ctRecipientDonationTracking" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

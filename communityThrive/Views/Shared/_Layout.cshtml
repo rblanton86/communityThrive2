@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @*<link href="~/Content/themes/base/all.css" rel="stylesheet" />*@  
+    <link href="~/Content/TempStyle.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="header">
+        <div class="subheader">
+            <a id="ctLogo" href="@Url.Action("Index")"><img src="@Url.Content("~/Images/CommunityThrivePIcture.jpg")"/></a>
+        </div>
+        fefwefwe
+        <div class="subheaderright1">
+            <button type="button" id="homebutton" onclick="location.href = '@Url.Action("Login", "Account")' ">Register/Login</button>
+        </div>
+    </div>
+    <div class="middle">
+        @RenderBody()
+       
+    </div>
+    <div class="footer">
+        <p>&copy; @DateTime.Now.Year - Community Thrive</p>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

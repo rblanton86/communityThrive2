@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="communityThriveDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ctCompany">
+    <Key>
+      <PropertyRef Name="companyID" />
+    </Key>
+    <Property Name="companyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="companyName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="companyDescription" Type="nvarchar" MaxLength="250" />
+    <Property Name="companyLocation" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="companyDemographic" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ctRoles">
+    <Key>
+      <PropertyRef Name="rolesID" />
+    </Key>
+    <Property Name="rolesID" Type="int" Nullable="false" />
+    <Property Name="roleDescription" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="ctUser">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleID" Type="int" Nullable="false" />
+    <Property Name="companyID" Type="int" />
+    <Property Name="emailAddress" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="userPassword" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="phoneNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="userAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="userTypeID" Type="int" />
+  </EntityType>
+  <EntityType Name="ctUserType">
+    <Key>
+      <PropertyRef Name="userTypeID" />
+    </Key>
+    <Property Name="userTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userTypeDescription" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__ctUser__companyI__628FA481">
+    <End Role="ctCompany" Type="Self.ctCompany" Multiplicity="0..1" />
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctCompany">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctUser__companyI__7E37BEF6">
+    <End Role="ctCompany" Type="Self.ctCompany" Multiplicity="0..1" />
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctCompany">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctUser__roleID__6383C8BA">
+    <End Role="ctRoles" Type="Self.ctRoles" Multiplicity="1" />
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctRoles">
+        <PropertyRef Name="rolesID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctUser__roleID__7F2BE32F">
+    <End Role="ctRoles" Type="Self.ctRoles" Multiplicity="1" />
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctRoles">
+        <PropertyRef Name="rolesID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctUser_ctUserType">
+    <End Role="ctUserType" Type="Self.ctUserType" Multiplicity="0..1" />
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctUserType">
+        <PropertyRef Name="userTypeID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="userTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="communityThriveDBModelStoreContainer">
+    <EntitySet Name="ctCompany" EntityType="Self.ctCompany" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctRoles" EntityType="Self.ctRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctUser" EntityType="Self.ctUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctUserType" EntityType="Self.ctUserType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ctUser__companyI__628FA481" Association="Self.FK__ctUser__companyI__628FA481">
+      <End Role="ctCompany" EntitySet="ctCompany" />
+      <End Role="ctUser" EntitySet="ctUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctUser__companyI__7E37BEF6" Association="Self.FK__ctUser__companyI__7E37BEF6">
+      <End Role="ctCompany" EntitySet="ctCompany" />
+      <End Role="ctUser" EntitySet="ctUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctUser__roleID__6383C8BA" Association="Self.FK__ctUser__roleID__6383C8BA">
+      <End Role="ctRoles" EntitySet="ctRoles" />
+      <End Role="ctUser" EntitySet="ctUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctUser__roleID__7F2BE32F" Association="Self.FK__ctUser__roleID__7F2BE32F">
+      <End Role="ctRoles" EntitySet="ctRoles" />
+      <End Role="ctUser" EntitySet="ctUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctUser_ctUserType" Association="Self.FK_ctUser_ctUserType">
+      <End Role="ctUserType" EntitySet="ctUserType" />
+      <End Role="ctUser" EntitySet="ctUser" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

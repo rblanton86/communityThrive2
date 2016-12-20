@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="communityThriveDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ctDonation">
+    <Key>
+      <PropertyRef Name="donationID" />
+    </Key>
+    <Property Name="donationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="dateSubmitted" Type="datetime" Nullable="false" />
+    <Property Name="describe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="notes" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="eventID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ctEvent">
+    <Key>
+      <PropertyRef Name="eventsID" />
+    </Key>
+    <Property Name="eventsID" Type="int" Nullable="false" />
+    <Property Name="eventTypeID" Type="int" Nullable="false" />
+    <Property Name="eventDescription" Type="varchar(max)" />
+    <Property Name="eventDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ctEventType">
+    <Key>
+      <PropertyRef Name="eventTypeID" />
+    </Key>
+    <Property Name="eventTypeID" Type="int" Nullable="false" />
+    <Property Name="eventTypeDescription" Type="nvarchar(max)" />
+    <Property Name="designation" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ctInventory">
+    <Key>
+      <PropertyRef Name="inventoryID" />
+    </Key>
+    <Property Name="inventoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="donationID" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="description" Type="varchar" MaxLength="255" />
+    <Property Name="categoryID" Type="int" />
+  </EntityType>
+  <EntityType Name="ctReceipt">
+    <Key>
+      <PropertyRef Name="ctReceiptID" />
+    </Key>
+    <Property Name="ctReceiptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="itemList" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ctRecipient">
+    <Key>
+      <PropertyRef Name="recipientID" />
+    </Key>
+    <Property Name="recipientID" Type="int" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="gender" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ctRecipientAddress">
+    <Key>
+      <PropertyRef Name="ctRecipientAddressID" />
+    </Key>
+    <Property Name="ctRecipientAddressID" Type="int" Nullable="false" />
+    <Property Name="recipientID" Type="int" Nullable="false" />
+    <Property Name="streetName" Type="nvarchar" MaxLength="100" />
+    <Property Name="cityName" Type="nvarchar" MaxLength="50" />
+    <Property Name="stateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="zipcode" Type="int" />
+  </EntityType>
+  <EntityType Name="ctRecipientDonationTracking">
+    <Key>
+      <PropertyRef Name="donationTrackingID" />
+    </Key>
+    <Property Name="donationTrackingID" Type="int" Nullable="false" />
+    <Property Name="recipientID" Type="int" Nullable="false" />
+    <Property Name="donationDate" Type="datetime" />
+    <Property Name="eventsID" Type="int" Nullable="false" />
+    <Property Name="stockID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ctUser">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleID" Type="int" Nullable="false" />
+    <Property Name="companyID" Type="int" />
+    <Property Name="emailAddress" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="userPassword" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="phoneNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="userAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="userTypeID" Type="int" />
+  </EntityType>
+  <Association Name="FK__ctDonatio__userI__5070F446">
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="1" />
+    <End Role="ctDonation" Type="Self.ctDonation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctUser">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="ctDonation">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctDonatio__userI__797309D9">
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="1" />
+    <End Role="ctDonation" Type="Self.ctDonation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctUser">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="ctDonation">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctReceipt__itemL__5812160E">
+    <End Role="ctDonation" Type="Self.ctDonation" Multiplicity="1" />
+    <End Role="ctReceipt" Type="Self.ctReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctDonation">
+        <PropertyRef Name="donationID" />
+      </Principal>
+      <Dependent Role="ctReceipt">
+        <PropertyRef Name="itemList" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctReceipt__itemL__7A672E12">
+    <End Role="ctDonation" Type="Self.ctDonation" Multiplicity="1" />
+    <End Role="ctReceipt" Type="Self.ctReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctDonation">
+        <PropertyRef Name="donationID" />
+      </Principal>
+      <Dependent Role="ctReceipt">
+        <PropertyRef Name="itemList" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctReceipt__userI__59063A47">
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="1" />
+    <End Role="ctReceipt" Type="Self.ctReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctUser">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="ctReceipt">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctReceipt__userI__7B5B524B">
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="1" />
+    <End Role="ctReceipt" Type="Self.ctReceipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctUser">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="ctReceipt">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctDonation_ctEvent">
+    <End Role="ctEvent" Type="Self.ctEvent" Multiplicity="1" />
+    <End Role="ctDonation" Type="Self.ctDonation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctEvent">
+        <PropertyRef Name="eventsID" />
+      </Principal>
+      <Dependent Role="ctDonation">
+        <PropertyRef Name="eventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctEvent_eventTypeID">
+    <End Role="ctEventType" Type="Self.ctEventType" Multiplicity="1" />
+    <End Role="ctEvent" Type="Self.ctEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctEventType">
+        <PropertyRef Name="eventTypeID" />
+      </Principal>
+      <Dependent Role="ctEvent">
+        <PropertyRef Name="eventTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctRecipientAddress_recipientID">
+    <End Role="ctRecipient" Type="Self.ctRecipient" Multiplicity="1" />
+    <End Role="ctRecipientAddress" Type="Self.ctRecipientAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctRecipient">
+        <PropertyRef Name="recipientID" />
+      </Principal>
+      <Dependent Role="ctRecipientAddress">
+        <PropertyRef Name="recipientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctRecipientDonationTracking_eventsID">
+    <End Role="ctEvent" Type="Self.ctEvent" Multiplicity="1" />
+    <End Role="ctRecipientDonationTracking" Type="Self.ctRecipientDonationTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctEvent">
+        <PropertyRef Name="eventsID" />
+      </Principal>
+      <Dependent Role="ctRecipientDonationTracking">
+        <PropertyRef Name="eventsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctRecipientDonationTracking_recipientID">
+    <End Role="ctRecipient" Type="Self.ctRecipient" Multiplicity="1" />
+    <End Role="ctRecipientDonationTracking" Type="Self.ctRecipientDonationTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctRecipient">
+        <PropertyRef Name="recipientID" />
+      </Principal>
+      <Dependent Role="ctRecipientDonationTracking">
+        <PropertyRef Name="recipientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="communityThriveDBModel1StoreContainer">
+    <EntitySet Name="ctDonation" EntityType="Self.ctDonation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctEvent" EntityType="Self.ctEvent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctEventType" EntityType="Self.ctEventType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctInventory" EntityType="Self.ctInventory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctReceipt" EntityType="Self.ctReceipt" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctRecipient" EntityType="Self.ctRecipient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctRecipientAddress" EntityType="Self.ctRecipientAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctRecipientDonationTracking" EntityType="Self.ctRecipientDonationTracking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctUser" EntityType="Self.ctUser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ctDonatio__userI__5070F446" Association="Self.FK__ctDonatio__userI__5070F446">
+      <End Role="ctUser" EntitySet="ctUser" />
+      <End Role="ctDonation" EntitySet="ctDonation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctDonatio__userI__797309D9" Association="Self.FK__ctDonatio__userI__797309D9">
+      <End Role="ctUser" EntitySet="ctUser" />
+      <End Role="ctDonation" EntitySet="ctDonation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctReceipt__itemL__5812160E" Association="Self.FK__ctReceipt__itemL__5812160E">
+      <End Role="ctDonation" EntitySet="ctDonation" />
+      <End Role="ctReceipt" EntitySet="ctReceipt" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctReceipt__itemL__7A672E12" Association="Self.FK__ctReceipt__itemL__7A672E12">
+      <End Role="ctDonation" EntitySet="ctDonation" />
+      <End Role="ctReceipt" EntitySet="ctReceipt" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctReceipt__userI__59063A47" Association="Self.FK__ctReceipt__userI__59063A47">
+      <End Role="ctUser" EntitySet="ctUser" />
+      <End Role="ctReceipt" EntitySet="ctReceipt" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctReceipt__userI__7B5B524B" Association="Self.FK__ctReceipt__userI__7B5B524B">
+      <End Role="ctUser" EntitySet="ctUser" />
+      <End Role="ctReceipt" EntitySet="ctReceipt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctDonation_ctEvent" Association="Self.FK_ctDonation_ctEvent">
+      <End Role="ctEvent" EntitySet="ctEvent" />
+      <End Role="ctDonation" EntitySet="ctDonation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctEvent_eventTypeID" Association="Self.FK_ctEvent_eventTypeID">
+      <End Role="ctEventType" EntitySet="ctEventType" />
+      <End Role="ctEvent" EntitySet="ctEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctRecipientAddress_recipientID" Association="Self.FK_ctRecipientAddress_recipientID">
+      <End Role="ctRecipient" EntitySet="ctRecipient" />
+      <End Role="ctRecipientAddress" EntitySet="ctRecipientAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctRecipientDonationTracking_eventsID" Association="Self.FK_ctRecipientDonationTracking_eventsID">
+      <End Role="ctEvent" EntitySet="ctEvent" />
+      <End Role="ctRecipientDonationTracking" EntitySet="ctRecipientDonationTracking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctRecipientDonationTracking_recipientID" Association="Self.FK_ctRecipientDonationTracking_recipientID">
+      <End Role="ctRecipient" EntitySet="ctRecipient" />
+      <End Role="ctRecipientDonationTracking" EntitySet="ctRecipientDonationTracking" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

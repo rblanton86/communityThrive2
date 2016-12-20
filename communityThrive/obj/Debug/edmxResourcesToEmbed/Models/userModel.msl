@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="communityThriveDBModelStoreContainer" CdmEntityContainer="communityThriveDBEntities">
+    <EntitySetMapping Name="ctCompanies">
+      <EntityTypeMapping TypeName="communityThriveDBModel.ctCompany">
+        <MappingFragment StoreEntitySet="ctCompany">
+          <ScalarProperty Name="companyID" ColumnName="companyID" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="companyDescription" ColumnName="companyDescription" />
+          <ScalarProperty Name="companyLocation" ColumnName="companyLocation" />
+          <ScalarProperty Name="companyDemographic" ColumnName="companyDemographic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctUsers">
+      <EntityTypeMapping TypeName="communityThriveDBModel.ctUser">
+        <MappingFragment StoreEntitySet="ctUser">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="roleID" ColumnName="roleID" />
+          <ScalarProperty Name="companyID" ColumnName="companyID" />
+          <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+          <ScalarProperty Name="userAddress" ColumnName="userAddress" />
+          <ScalarProperty Name="userTypeID" ColumnName="userTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctUserTypes">
+      <EntityTypeMapping TypeName="communityThriveDBModel.ctUserType">
+        <MappingFragment StoreEntitySet="ctUserType">
+          <ScalarProperty Name="userTypeID" ColumnName="userTypeID" />
+          <ScalarProperty Name="userTypeDescription" ColumnName="userTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctRoles">
+      <EntityTypeMapping TypeName="communityThriveDBModel.ctRole">
+        <MappingFragment StoreEntitySet="ctRoles">
+          <ScalarProperty Name="roleDescription" ColumnName="roleDescription" />
+          <ScalarProperty Name="rolesID" ColumnName="rolesID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

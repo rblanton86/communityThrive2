@@ -1,0 +1,18 @@
+USE communityThrive2DB
+
+
+GO
+
+CREATE TABLE ct2RecipientAddress(
+	recipientAddressID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	recipientID INT NOT NULL,
+	streetName NVARCHAR(100) NULL,
+	cityIDFK INT FOREIGN KEY REFERENCES ct2City(cityID) NOT NULL,
+	stateIDFK INT FOREIGN KEY REFERENCES ct2State(stateID) NOT NULL,
+	zipcode INT NOT NULL
+	
+)
+
+GO
+
+

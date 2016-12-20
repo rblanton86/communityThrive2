@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="communityThriveDBModel2StoreContainer" CdmEntityContainer="communityThriveDBEntities2">
+    <EntitySetMapping Name="ctDonations">
+      <EntityTypeMapping TypeName="communityThriveDBModel2.ctDonation">
+        <MappingFragment StoreEntitySet="ctDonation">
+          <ScalarProperty Name="donationID" ColumnName="donationID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="dateSubmitted" ColumnName="dateSubmitted" />
+          <ScalarProperty Name="describe" ColumnName="describe" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="eventID" ColumnName="eventID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctEvents">
+      <EntityTypeMapping TypeName="communityThriveDBModel2.ctEvent">
+        <MappingFragment StoreEntitySet="ctEvent">
+          <ScalarProperty Name="eventsID" ColumnName="eventsID" />
+          <ScalarProperty Name="eventTypeID" ColumnName="eventTypeID" />
+          <ScalarProperty Name="eventDescription" ColumnName="eventDescription" />
+          <ScalarProperty Name="eventDateTime" ColumnName="eventDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctEventTypes">
+      <EntityTypeMapping TypeName="communityThriveDBModel2.ctEventType">
+        <MappingFragment StoreEntitySet="ctEventType">
+          <ScalarProperty Name="eventTypeID" ColumnName="eventTypeID" />
+          <ScalarProperty Name="eventTypeDescription" ColumnName="eventTypeDescription" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctRecipientDonationTrackings">
+      <EntityTypeMapping TypeName="communityThriveDBModel2.ctRecipientDonationTracking">
+        <MappingFragment StoreEntitySet="ctRecipientDonationTracking">
+          <ScalarProperty Name="donationTrackingID" ColumnName="donationTrackingID" />
+          <ScalarProperty Name="recipientID" ColumnName="recipientID" />
+          <ScalarProperty Name="donationDate" ColumnName="donationDate" />
+          <ScalarProperty Name="eventsID" ColumnName="eventsID" />
+          <ScalarProperty Name="stockID" ColumnName="stockID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

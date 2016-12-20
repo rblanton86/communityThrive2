@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="communityThriveDBModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ctDonation">
+    <Key>
+      <PropertyRef Name="donationID" />
+    </Key>
+    <Property Name="donationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="eventID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ctEvent" Relationship="Self.FK_ctDonation_ctEvent" FromRole="ctDonation" ToRole="ctEvent" />
+  </EntityType>
+  <EntityType Name="ctEvent">
+    <Key>
+      <PropertyRef Name="eventsID" />
+    </Key>
+    <Property Name="eventsID" Type="Int32" Nullable="false" />
+    <Property Name="eventTypeID" Type="Int32" Nullable="false" />
+    <Property Name="eventDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="eventDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ctDonations" Relationship="Self.FK_ctDonation_ctEvent" FromRole="ctEvent" ToRole="ctDonation" />
+    <NavigationProperty Name="ctEventType" Relationship="Self.FK_ctEvent_eventTypeID" FromRole="ctEvent" ToRole="ctEventType" />
+    <NavigationProperty Name="ctRecipientDonationTrackings" Relationship="Self.FK_ctRecipientDonationTracking_eventsID" FromRole="ctEvent" ToRole="ctRecipientDonationTracking" />
+  </EntityType>
+  <EntityType Name="ctEventType">
+    <Key>
+      <PropertyRef Name="eventTypeID" />
+    </Key>
+    <Property Name="eventTypeID" Type="Int32" Nullable="false" />
+    <Property Name="eventTypeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ctEvents" Relationship="Self.FK_ctEvent_eventTypeID" FromRole="ctEventType" ToRole="ctEvent" />
+  </EntityType>
+  <EntityType Name="ctRecipientDonationTracking">
+    <Key>
+      <PropertyRef Name="donationTrackingID" />
+    </Key>
+    <Property Name="donationTrackingID" Type="Int32" Nullable="false" />
+    <Property Name="recipientID" Type="Int32" Nullable="false" />
+    <Property Name="donationDate" Type="DateTime" Precision="3" />
+    <Property Name="eventsID" Type="Int32" Nullable="false" />
+    <Property Name="stockID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ctEvent" Relationship="Self.FK_ctRecipientDonationTracking_eventsID" FromRole="ctRecipientDonationTracking" ToRole="ctEvent" />
+  </EntityType>
+  <Association Name="FK_ctDonation_ctEvent">
+    <End Role="ctEvent" Type="Self.ctEvent" Multiplicity="1" />
+    <End Role="ctDonation" Type="Self.ctDonation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctEvent">
+        <PropertyRef Name="eventsID" />
+      </Principal>
+      <Dependent Role="ctDonation">
+        <PropertyRef Name="eventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctEvent_eventTypeID">
+    <End Role="ctEventType" Type="Self.ctEventType" Multiplicity="1" />
+    <End Role="ctEvent" Type="Self.ctEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctEventType">
+        <PropertyRef Name="eventTypeID" />
+      </Principal>
+      <Dependent Role="ctEvent">
+        <PropertyRef Name="eventTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctRecipientDonationTracking_eventsID">
+    <End Role="ctEvent" Type="Self.ctEvent" Multiplicity="1" />
+    <End Role="ctRecipientDonationTracking" Type="Self.ctRecipientDonationTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctEvent">
+        <PropertyRef Name="eventsID" />
+      </Principal>
+      <Dependent Role="ctRecipientDonationTracking">
+        <PropertyRef Name="eventsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="communityThriveDBEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ctDonations" EntityType="Self.ctDonation" />
+    <EntitySet Name="ctEvents" EntityType="Self.ctEvent" />
+    <EntitySet Name="ctEventTypes" EntityType="Self.ctEventType" />
+    <EntitySet Name="ctRecipientDonationTrackings" EntityType="Self.ctRecipientDonationTracking" />
+    <AssociationSet Name="FK_ctDonation_ctEvent" Association="Self.FK_ctDonation_ctEvent">
+      <End Role="ctEvent" EntitySet="ctEvents" />
+      <End Role="ctDonation" EntitySet="ctDonations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctEvent_eventTypeID" Association="Self.FK_ctEvent_eventTypeID">
+      <End Role="ctEventType" EntitySet="ctEventTypes" />
+      <End Role="ctEvent" EntitySet="ctEvents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctRecipientDonationTracking_eventsID" Association="Self.FK_ctRecipientDonationTracking_eventsID">
+      <End Role="ctEvent" EntitySet="ctEvents" />
+      <End Role="ctRecipientDonationTracking" EntitySet="ctRecipientDonationTrackings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

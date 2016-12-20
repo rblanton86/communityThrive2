@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="communityThriveDBModel4.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ctCompany">
+    <Key>
+      <PropertyRef Name="companyID" />
+    </Key>
+    <Property Name="companyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="companyName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="companyDescription" Type="nvarchar" MaxLength="250" />
+    <Property Name="companyLocation" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="companyDemographic" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ctUser">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleID" Type="int" Nullable="false" />
+    <Property Name="companyID" Type="int" />
+    <Property Name="emailAddress" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="userPassword" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="phoneNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="userAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="userTypeID" Type="int" />
+  </EntityType>
+  <Association Name="FK__ctUser__companyI__628FA481">
+    <End Role="ctCompany" Type="Self.ctCompany" Multiplicity="0..1" />
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctCompany">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctUser__companyI__7E37BEF6">
+    <End Role="ctCompany" Type="Self.ctCompany" Multiplicity="0..1" />
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctCompany">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="communityThriveDBModel4StoreContainer">
+    <EntitySet Name="ctCompany" EntityType="Self.ctCompany" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctUser" EntityType="Self.ctUser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ctUser__companyI__628FA481" Association="Self.FK__ctUser__companyI__628FA481">
+      <End Role="ctCompany" EntitySet="ctCompany" />
+      <End Role="ctUser" EntitySet="ctUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctUser__companyI__7E37BEF6" Association="Self.FK__ctUser__companyI__7E37BEF6">
+      <End Role="ctCompany" EntitySet="ctCompany" />
+      <End Role="ctUser" EntitySet="ctUser" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

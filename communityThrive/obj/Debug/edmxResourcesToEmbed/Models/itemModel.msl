@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="communityThriveDBModel5StoreContainer" CdmEntityContainer="communityThriveDBEntities5">
+    <EntitySetMapping Name="ctCategories">
+      <EntityTypeMapping TypeName="communityThriveDBModel5.ctCategory">
+        <MappingFragment StoreEntitySet="ctCategory">
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+          <ScalarProperty Name="dateAdded" ColumnName="dateAdded" />
+          <ScalarProperty Name="parentID" ColumnName="parentID" />
+          <ScalarProperty Name="isUserDefined" ColumnName="isUserDefined" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="catDescription" ColumnName="catDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctDonations">
+      <EntityTypeMapping TypeName="communityThriveDBModel5.ctDonation">
+        <MappingFragment StoreEntitySet="ctDonation">
+          <ScalarProperty Name="donationID" ColumnName="donationID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="dateSubmitted" ColumnName="dateSubmitted" />
+          <ScalarProperty Name="describe" ColumnName="describe" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="eventID" ColumnName="eventID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctInventories">
+      <EntityTypeMapping TypeName="communityThriveDBModel5.ctInventory">
+        <MappingFragment StoreEntitySet="ctInventory">
+          <ScalarProperty Name="inventoryID" ColumnName="inventoryID" />
+          <ScalarProperty Name="donationID" ColumnName="donationID" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctItems">
+      <EntityTypeMapping TypeName="communityThriveDBModel5.ctItem">
+        <MappingFragment StoreEntitySet="ctItem">
+          <ScalarProperty Name="itemID" ColumnName="itemID" />
+          <ScalarProperty Name="itemName" ColumnName="itemName" />
+          <ScalarProperty Name="itemPrice" ColumnName="itemPrice" />
+          <ScalarProperty Name="itemDescription" ColumnName="itemDescription" />
+          <ScalarProperty Name="itemUPC" ColumnName="itemUPC" />
+          <ScalarProperty Name="iventoryID" ColumnName="iventoryID" />
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctReceipts">
+      <EntityTypeMapping TypeName="communityThriveDBModel5.ctReceipt">
+        <MappingFragment StoreEntitySet="ctReceipt">
+          <ScalarProperty Name="ctReceiptID" ColumnName="ctReceiptID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="itemList" ColumnName="itemList" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctStocks">
+      <EntityTypeMapping TypeName="communityThriveDBModel5.ctStock">
+        <MappingFragment StoreEntitySet="ctStock">
+          <ScalarProperty Name="stockID" ColumnName="stockID" />
+          <ScalarProperty Name="itemID" ColumnName="itemID" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="locationCode" ColumnName="locationCode" />
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+          <ScalarProperty Name="inventoryID" ColumnName="inventoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

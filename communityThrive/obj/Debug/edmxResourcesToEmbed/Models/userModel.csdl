@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="communityThriveDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ctCompany">
+    <Key>
+      <PropertyRef Name="companyID" />
+    </Key>
+    <Property Name="companyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="companyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="companyDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="companyLocation" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="companyDemographic" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ctUsers" Relationship="Self.FK__ctUser__companyI__628FA481" FromRole="ctCompany" ToRole="ctUser" />
+    <NavigationProperty Name="ctUsers1" Relationship="Self.FK__ctUser__companyI__7E37BEF6" FromRole="ctCompany" ToRole="ctUser" />
+  </EntityType>
+  <EntityType Name="ctUser">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleID" Type="Int32" Nullable="false" />
+    <Property Name="companyID" Type="Int32" />
+    <Property Name="emailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userPassword" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="userAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="userTypeID" Type="Int32" />
+    <NavigationProperty Name="ctCompany" Relationship="Self.FK__ctUser__companyI__628FA481" FromRole="ctUser" ToRole="ctCompany" />
+    <NavigationProperty Name="ctCompany1" Relationship="Self.FK__ctUser__companyI__7E37BEF6" FromRole="ctUser" ToRole="ctCompany" />
+    <NavigationProperty Name="ctUserType" Relationship="Self.FK_ctUser_ctUserType" FromRole="ctUser" ToRole="ctUserType" />
+    <NavigationProperty Name="ctRole" Relationship="communityThriveDBModel.FK__ctUser__roleID__6383C8BA" FromRole="ctUser" ToRole="ctRole" />
+    <NavigationProperty Name="ctRole1" Relationship="communityThriveDBModel.FK__ctUser__roleID__7F2BE32F" FromRole="ctUser" ToRole="ctRole" />
+  </EntityType>
+  <EntityType Name="ctUserType">
+    <Key>
+      <PropertyRef Name="userTypeID" />
+    </Key>
+    <Property Name="userTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userTypeDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ctUsers" Relationship="Self.FK_ctUser_ctUserType" FromRole="ctUserType" ToRole="ctUser" />
+  </EntityType>
+  <Association Name="FK__ctUser__companyI__628FA481">
+    <End Role="ctCompany" Type="Self.ctCompany" Multiplicity="0..1" />
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctCompany">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctUser__companyI__7E37BEF6">
+    <End Role="ctCompany" Type="Self.ctCompany" Multiplicity="0..1" />
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctCompany">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctUser_ctUserType">
+    <End Role="ctUserType" Type="Self.ctUserType" Multiplicity="0..1" />
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctUserType">
+        <PropertyRef Name="userTypeID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="userTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="communityThriveDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ctCompanies" EntityType="Self.ctCompany" />
+    <EntitySet Name="ctUsers" EntityType="Self.ctUser" />
+    <EntitySet Name="ctUserTypes" EntityType="Self.ctUserType" />
+    <AssociationSet Name="FK__ctUser__companyI__628FA481" Association="Self.FK__ctUser__companyI__628FA481">
+      <End Role="ctCompany" EntitySet="ctCompanies" />
+      <End Role="ctUser" EntitySet="ctUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctUser__companyI__7E37BEF6" Association="Self.FK__ctUser__companyI__7E37BEF6">
+      <End Role="ctCompany" EntitySet="ctCompanies" />
+      <End Role="ctUser" EntitySet="ctUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctUser_ctUserType" Association="Self.FK_ctUser_ctUserType">
+      <End Role="ctUserType" EntitySet="ctUserTypes" />
+      <End Role="ctUser" EntitySet="ctUsers" />
+    </AssociationSet>
+    <EntitySet Name="ctRoles" EntityType="communityThriveDBModel.ctRole" />
+    <AssociationSet Name="FK__ctUser__roleID__6383C8BA" Association="communityThriveDBModel.FK__ctUser__roleID__6383C8BA">
+      <End Role="ctRole" EntitySet="ctRoles" />
+      <End Role="ctUser" EntitySet="ctUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctUser__roleID__7F2BE32F" Association="communityThriveDBModel.FK__ctUser__roleID__7F2BE32F">
+      <End Role="ctRole" EntitySet="ctRoles" />
+      <End Role="ctUser" EntitySet="ctUsers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ctRole">
+    <Key>
+      <PropertyRef Name="rolesID" />
+    </Key>
+    <Property Name="rolesID" Type="Int32" Nullable="false" />
+    <Property Name="roleDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ctUsers" Relationship="communityThriveDBModel.FK__ctUser__roleID__6383C8BA" FromRole="ctRole" ToRole="ctUser" />
+    <NavigationProperty Name="ctUsers1" Relationship="communityThriveDBModel.FK__ctUser__roleID__7F2BE32F" FromRole="ctRole" ToRole="ctUser" />
+  </EntityType>
+  <Association Name="FK__ctUser__roleID__6383C8BA">
+    <End Type="communityThriveDBModel.ctRole" Role="ctRole" Multiplicity="1" />
+    <End Type="communityThriveDBModel.ctUser" Role="ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctRole">
+        <PropertyRef Name="rolesID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctUser__roleID__7F2BE32F">
+    <End Type="communityThriveDBModel.ctRole" Role="ctRole" Multiplicity="1" />
+    <End Type="communityThriveDBModel.ctUser" Role="ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctRole">
+        <PropertyRef Name="rolesID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

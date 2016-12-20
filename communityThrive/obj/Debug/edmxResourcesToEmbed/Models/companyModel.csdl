@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="communityThriveDBModel4" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ctCompany">
+    <Key>
+      <PropertyRef Name="companyID" />
+    </Key>
+    <Property Name="companyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="companyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="companyDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="companyLocation" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="companyDemographic" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ctUsers" Relationship="Self.FK__ctUser__companyI__628FA481" FromRole="ctCompany" ToRole="ctUser" />
+    <NavigationProperty Name="ctUsers1" Relationship="Self.FK__ctUser__companyI__7E37BEF6" FromRole="ctCompany" ToRole="ctUser" />
+  </EntityType>
+  <EntityType Name="ctUser">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleID" Type="Int32" Nullable="false" />
+    <Property Name="companyID" Type="Int32" />
+    <Property Name="emailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userPassword" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="userAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="userTypeID" Type="Int32" />
+    <NavigationProperty Name="ctCompany" Relationship="Self.FK__ctUser__companyI__628FA481" FromRole="ctUser" ToRole="ctCompany" />
+    <NavigationProperty Name="ctCompany1" Relationship="Self.FK__ctUser__companyI__7E37BEF6" FromRole="ctUser" ToRole="ctCompany" />
+  </EntityType>
+  <Association Name="FK__ctUser__companyI__628FA481">
+    <End Role="ctCompany" Type="Self.ctCompany" Multiplicity="0..1" />
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctCompany">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ctUser__companyI__7E37BEF6">
+    <End Role="ctCompany" Type="Self.ctCompany" Multiplicity="0..1" />
+    <End Role="ctUser" Type="Self.ctUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctCompany">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="ctUser">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="communityThriveDBEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ctCompanies" EntityType="Self.ctCompany" />
+    <EntitySet Name="ctUsers" EntityType="Self.ctUser" />
+    <AssociationSet Name="FK__ctUser__companyI__628FA481" Association="Self.FK__ctUser__companyI__628FA481">
+      <End Role="ctCompany" EntitySet="ctCompanies" />
+      <End Role="ctUser" EntitySet="ctUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ctUser__companyI__7E37BEF6" Association="Self.FK__ctUser__companyI__7E37BEF6">
+      <End Role="ctCompany" EntitySet="ctCompanies" />
+      <End Role="ctUser" EntitySet="ctUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

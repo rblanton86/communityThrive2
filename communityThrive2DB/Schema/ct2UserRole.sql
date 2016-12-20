@@ -1,0 +1,15 @@
+USE communityThrive2DB
+GO
+
+
+
+CREATE TABLE ct2userRole(
+	userRoleID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	roleID INT NOT NULL FOREIGN KEY REFERENCES ct2Role(roleID)
+	
+)	
+
+
+GO
+
+

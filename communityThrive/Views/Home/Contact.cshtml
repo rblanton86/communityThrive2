@@ -1,0 +1,25 @@
+﻿@model IEnumerable<communityThrive2.Models.categoryModel>
+
+@{
+    ViewBag.Title = "About1";
+}
+
+
+<form action="~/Home/About1" method="post">
+    CategoryParentID:<input type="text" name="catParentID" />
+    CategoryDescription:<input type="text" name="catDesc" />
+    isUserMade:<input type="text" name="isUM" />
+    isDeleted:<input type="text" name="isD" />
+    <input type="submit" id="userInput" value="Send" />
+
+</form>
+
+<div>
+    <button type="button" onclick="location.href = '@Url.Action("About", "Home")' ">Search Items</button>
+</div>
+<div>
+    <button type="button" onclick="location.href = '@Url.Action("Index", "Home")' ">Return Home</button>
+</div>
+
+
+<h2>this is my number</h2>

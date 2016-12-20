@@ -1,0 +1,16 @@
+USE communityThrive2DB
+
+
+GO
+
+CREATE TABLE ct2Event(
+	eventID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	eventTypeIDFK INT NOT NULL FOREIGN KEY REFERENCES ct2EventType(eventTypeID),
+	eventDescription VARCHAR(100) NOT NULL,
+	eventDateTime DATETIME NOT NULL
+	
+)
+
+GO
+
+
