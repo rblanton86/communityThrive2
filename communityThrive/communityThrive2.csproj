@@ -343,7 +343,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Layoutbackup.cshtml" />
-    <Content Include="Views\Request\sendRequest.cshtml" />
+    <Content Include="Views\userRequest\sendRequest.cshtml" />
+    <Content Include="Views\userRequest\companyChoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -19,17 +19,22 @@ namespace communityThrive2.Controllers
         {
             if (yesorno == false)
             {
-                return View("Index","Home");
+                return Redirect("~/Home/Index");
             }
             else if (yesorno == true)
             {
-                return View(); //the page for then choosing the company would go here
+                return Redirect("~/userRequest/companyChoice"); //the page for then choosing the company would go here
             }
             else
             {
                 return View();
             }
 
+        }
+
+        public ActionResult companyChoice()
+        {
+            return View();
         }
     }
 }
