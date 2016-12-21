@@ -1,0 +1,5 @@
+C:\Users\Bailey\Documents\GitHub\communityThrive2\communityThrive2DB\bin\Debug\communityThrive2DB.dacpac
+C:\Users\Bailey\Documents\GitHub\communityThrive2\communityThrive2DB\bin\Debug\communityThrive2DB.dll
+C:\Users\Bailey\Documents\GitHub\communityThrive2\communityThrive2DB\bin\Debug\communityThrive2DB.pdb
+C:\Users\Bailey\Documents\GitHub\communityThrive2\communityThrive2DB\obj\Debug\communityThrive2DB.dll
+C:\Users\Bailey\Documents\GitHub\communityThrive2\communityThrive2DB\obj\Debug\communityThrive2DB.pdb

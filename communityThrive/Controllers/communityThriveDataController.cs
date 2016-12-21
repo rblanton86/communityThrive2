@@ -5,7 +5,6 @@ using System.Web.Configuration;
 using System.Data;
 using System.Data.Common;
 using communityThrive2.Models;
-using communityThrive2.Models.communityThriveModels;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -56,33 +55,7 @@ namespace communityThrive2.DataControllers
         }
 
 
-        public List<ctItem1> readItem(int userReadInput)
-        {
-
-            DbCommand get_itemData = db.GetStoredProcCommand("sp_ReadItem");
-
-            db.AddInParameter(get_itemData, "@itemID", DbType.Int32, userReadInput);
-
-            DataSet ds = db.ExecuteDataSet(get_itemData);
-
-            var itemInfo = (from daRow in ds.Tables[0].AsEnumerable()
-                            select new ctItem1()
-                            {
-                                
-                                itemID = userReadInput,
-                                itemName = daRow.Field<string>("itemName"),
-                                itemPrice = daRow.Field<int>("itemPrice"),
-                                itemDescription = daRow.Field<string>("itemDescription"),
-                                itemUPC = daRow.Field<int>("itemUPC"),
-                                iventoryID = daRow.Field<int>("iventoryID"),
-                                categoryID = daRow.Field<int>("categoryID")
-
-
-                            }).ToList();
-
-            return itemInfo;
-
-        }
+       
         public void updateItem(int itemID, string itemName, int itemPrice, string itemDescription, int itemUPC, int iventoryID, int categoryID)
         {
             DbCommand get_itemData = db.GetStoredProcCommand("sp_UpdateItem");
@@ -99,22 +72,7 @@ namespace communityThrive2.DataControllers
 
 
         }
-        public List<ctItem1> deleteItem(int itemID)
-        {
-            DbCommand get_itemData = db.GetStoredProcCommand("sp_DeleteItem");
-
-            db.AddInParameter(get_itemData, "@itemID", DbType.Int32, itemID);
-
-            DataSet ds = db.ExecuteDataSet(get_itemData);
-
-            var itemInfo = (from daRow in ds.Tables[0].AsEnumerable()
-                            select new ctItem1()
-                            {
-                                itemID = itemID,
-                            }).ToList();
-
-            return itemInfo;
-        }
+        
         /// <summary>
         /// This is the end of the CRUD stored procs for the ctItem tables
         /// </summary>

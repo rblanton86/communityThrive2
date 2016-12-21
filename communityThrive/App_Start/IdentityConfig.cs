@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using communityThrive.Models;
+using communityThrive2.Models;
 
-namespace communityThrive
+namespace communityThrive2
 {
     public class EmailService : IIdentityMessageService
     {

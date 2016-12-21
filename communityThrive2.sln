@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "communityThrive2", "communityThrive\communityThrive2.csproj", "{B0B777F2-A0AB-456F-B1D0-FE6DBD21E6FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "communityThrive2Tests", "communityThrive2Test\communityThrive2Tests.csproj", "{B0AB44F4-17DB-4760-87EC-F6772C1A515D}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "communityThrive2DB", "communityThrive2DB\communityThrive2DB.sqlproj", "{B9DD4875-A95D-4458-895A-A44BCC7076E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0B777F2-A0AB-456F-B1D0-FE6DBD21E6FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0B777F2-A0AB-456F-B1D0-FE6DBD21E6FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0B777F2-A0AB-456F-B1D0-FE6DBD21E6FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0B777F2-A0AB-456F-B1D0-FE6DBD21E6FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0AB44F4-17DB-4760-87EC-F6772C1A515D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0AB44F4-17DB-4760-87EC-F6772C1A515D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0AB44F4-17DB-4760-87EC-F6772C1A515D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0AB44F4-17DB-4760-87EC-F6772C1A515D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9DD4875-A95D-4458-895A-A44BCC7076E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9DD4875-A95D-4458-895A-A44BCC7076E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9DD4875-A95D-4458-895A-A44BCC7076E1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B9DD4875-A95D-4458-895A-A44BCC7076E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9DD4875-A95D-4458-895A-A44BCC7076E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9DD4875-A95D-4458-895A-A44BCC7076E1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
+	EndGlobalSection
+EndGlobal

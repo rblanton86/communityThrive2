@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace communityThrive
+namespace communityThrive2
 {
     public class BundleConfig
     {

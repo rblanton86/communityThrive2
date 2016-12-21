@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>communityThrive</RootNamespace>
-    <AssemblyName>communityThrive</AssemblyName>
+    <RootNamespace>communityThrive2</RootNamespace>
+    <AssemblyName>communityThrive2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -209,31 +209,12 @@
     <Compile Include="Controllers\communityThriveDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\userRequestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\cityModel.cs" />
-    <Compile Include="Models\communityThriveModels\ctCategory.cs" />
-    <Compile Include="Models\communityThriveModels\ctCompany.cs" />
-    <Compile Include="Models\communityThriveModels\ctDonation.cs" />
-    <Compile Include="Models\communityThriveModels\ctEvent.cs" />
-    <Compile Include="Models\communityThriveModels\ctEventType.cs" />
-    <Compile Include="Models\communityThriveModels\ctFamily.cs" />
-    <Compile Include="Models\communityThriveModels\ctHouseholdInformation.cs" />
-    <Compile Include="Models\communityThriveModels\ctInventory.cs" />
-    <Compile Include="Models\communityThriveModels\ctItem.cs" />
-    <Compile Include="Models\communityThriveModels\ctPrivilidges.cs" />
-    <Compile Include="Models\communityThriveModels\ctReceipt.cs" />
-    <Compile Include="Models\communityThriveModels\ctRecipient.cs" />
-    <Compile Include="Models\communityThriveModels\ctRecipientAddress.cs" />
-    <Compile Include="Models\communityThriveModels\ctRecipientDonorTracking.cs" />
-    <Compile Include="Models\communityThriveModels\ctRolePrivilidges.cs" />
-    <Compile Include="Models\communityThriveModels\ctRoles.cs" />
-    <Compile Include="Models\communityThriveModels\ctStock.cs" />
-    <Compile Include="Models\communityThriveModels\ctUser.cs" />
-    <Compile Include="Models\communityThriveModels\ctUserRole.cs" />
-    <Compile Include="Models\communityThriveModels\ctUserType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\categoryModel.cs" />
@@ -302,6 +283,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\CommunityThrivePIcture.jpg" />
+    <Content Include="Images\ThriveLogoSmaller.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -361,10 +343,10 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Layoutbackup.cshtml" />
+    <Content Include="Views\Request\sendRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\communityThriveData\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
