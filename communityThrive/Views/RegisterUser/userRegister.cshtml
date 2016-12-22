@@ -14,22 +14,27 @@
     <div>
         @Html.LabelFor(userModel => currentModel.firstName, "First Name")
         @Html.TextBoxFor(userModel => currentModel.firstName)
+        @Html.ValidationMessage("First Name")
     </div>
     <div>
         @Html.LabelFor(userModel => currentModel.lastName, "Last Name")
         @Html.TextBoxFor(userModel => currentModel.lastName)
+        @Html.ValidationMessage("Last Name")
     </div>
     <div>
         @Html.LabelFor(userModel => currentModel.phoneNumber, "Phone Number")
         @Html.TextBoxFor(userModel => currentModel.phoneNumber)
+        @Html.ValidationMessage("Phone Number")
     </div>
     <div>
         @Html.LabelFor(userModel => currentModel.emailAddress, "Email Address")
         @Html.TextBoxFor(userModel => currentModel.emailAddress)
+        @Html.ValidationMessage("Email Address")
     </div>
     <div>
         @Html.LabelFor(userModel => currentModel.streetAddress, "Street Address")
         @Html.TextBoxFor(userModel => currentModel.streetAddress)
+        @Html.ValidationMessage("First Name")
     </div>
     <div>
         @Html.LabelFor(userModel => currentModel.cityIDFK, "City")
@@ -59,7 +64,10 @@
     </div>
 
 
-    <button type="button" onclick="location.href = '@Url.Action("Home","HomeController")' ">Submit</button>
+    <div>
+        <label>&nbsp;</label>
+        <input type="submit" value="Submit" class="submit" />
+    </div>
 
 }
 
