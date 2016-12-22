@@ -209,6 +209,7 @@
     <Compile Include="Controllers\communityThriveDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\userLoginController.cs" />
     <Compile Include="Controllers\userRequestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -345,6 +346,7 @@
     <Content Include="Views\Shared\Layoutbackup.cshtml" />
     <Content Include="Views\userRequest\sendRequest.cshtml" />
     <Content Include="Views\userRequest\companyChoice.cshtml" />
+    <Content Include="Views\userLogin\userLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
