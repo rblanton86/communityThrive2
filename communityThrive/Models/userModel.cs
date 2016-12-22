@@ -36,7 +36,7 @@ namespace communityThrive2.Models
 
         public int stateIDFK { get; set; }
 
-        public geoLocationModel geolocation { get; set; }
+        public geoLocationModel geoLocation { get; set; }
 
         public int zipcode { get; set; }
 

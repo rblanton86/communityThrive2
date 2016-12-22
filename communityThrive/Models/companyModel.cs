@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Drawing;
 
 namespace communityThrive2.Models
 {
@@ -17,6 +18,7 @@ namespace communityThrive2.Models
         public geoLocationModel cityID { get; set; }
 
         public string companyDemographic { get; set; }
+        public Bitmap companyLogo { get; set; }
 
         //add a list to contain the users in the company for reference at a late time
 

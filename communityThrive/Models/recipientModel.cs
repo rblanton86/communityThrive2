@@ -13,7 +13,7 @@ namespace communityThrive2.Models
 
         public string lastName { get; set; }
 
-        public int recipientGener { get; set; }
+        public int recipientGender { get; set; }
 
 
     }
