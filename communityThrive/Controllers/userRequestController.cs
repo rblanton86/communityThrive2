@@ -14,21 +14,17 @@ namespace communityThrive2.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult sendRequest(bool yesorno)
+        public ActionResult sendRequestYes()
         {
-            if (yesorno == false)
-            {
-                return Redirect("~/Home/Index");
-            }
-            else if (yesorno == true)
-            {
-                return Redirect("~/userRequest/companyChoice"); //the page for then choosing the company would go here
-            }
-            else
-            {
-                return View();
-            }
+            //perform this action if the user wants to join a company
+            return Redirect("~/userRequest/companyChoice");
+
+        }
+
+        public ActionResult sendRequestNo()
+        {
+            //perform this action if a user does not want to join a company 
+            return Redirect("~/Home/Index");
 
         }
 
