@@ -13,7 +13,8 @@ namespace communityThrive2.Models
 
         public string companyDescription { get; set; }
 
-        public string companyLocation { get; set; }
+        public geoLocationModel stateID { get; set; }
+        public geoLocationModel cityID { get; set; }
 
         public string companyDemographic { get; set; }
 
