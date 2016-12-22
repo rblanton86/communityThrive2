@@ -9,7 +9,7 @@ namespace communityThrive2.Controllers
     public class userLoginController : Controller
     {
         // GET: userLogin
-        public ActionResult Index()
+        public ActionResult userLogin()
         {
             return View();
         }
