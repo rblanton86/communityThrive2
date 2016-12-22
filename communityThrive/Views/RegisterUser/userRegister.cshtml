@@ -1,0 +1,66 @@
+﻿@model communityThrive2.Models.userModel
+    
+@{
+    ViewBag.Title = "userRegister";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    communityThrive2.Models.userModel currentModel = new communityThrive2.Models.userModel();
+}
+
+<title>userRegister</title>
+
+@using (Html.BeginForm("userRegister", "RegisterUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.LabelFor(userModel => currentModel.firstName, "First Name")
+        @Html.TextBoxFor(userModel => currentModel.firstName)
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.lastName, "Last Name")
+        @Html.TextBoxFor(userModel => currentModel.lastName)
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.phoneNumber, "Phone Number")
+        @Html.TextBoxFor(userModel => currentModel.phoneNumber)
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.emailAddress, "Email Address")
+        @Html.TextBoxFor(userModel => currentModel.emailAddress)
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.streetAddress, "Street Address")
+        @Html.TextBoxFor(userModel => currentModel.streetAddress)
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.cityIDFK, "City")
+        @Html.TextBoxFor(userModel => currentModel.cityIDFK)
+    </div>
+    <div>
+
+        @Html.LabelFor(userModel => currentModel.stateIDFK, "State")
+        @Html.TextBoxFor(userModel => currentModel.stateIDFK)
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.role.roleDescription, "Role Description")
+        @Html.TextBoxFor(userModel => currentModel.role.roleDescription)
+    </div>
+
+    <div>
+        @Html.LabelFor(userModel => currentModel.emailAddress,"Email Address")
+        @Html.TextBoxFor(userModel => currentModel.emailAddress)
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.companyIDFK,"Company ID")
+        @Html.TextBoxFor(userModel => currentModel.companyIDFK)
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.userPassword,"User Password")
+        @Html.TextBoxFor(userModel => currentModel.userPassword)
+    </div>
+
+
+    <button type="button" onclick="location.href = '@Url.Action("Home","HomeController")' ">Submit</button>
+
+}
+
+    <meta name="viewport" content="width=device-width" />

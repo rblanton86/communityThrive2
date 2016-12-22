@@ -30,7 +30,7 @@ namespace communityThrive2.Models
 
         public string phoneNumber { get; set; }
 
-        public string streetAddres { get; set; }
+        public string streetAddress { get; set; }
       
         public int cityIDFK { get; set; }
 
