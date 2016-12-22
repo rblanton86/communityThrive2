@@ -1,0 +1,49 @@
+﻿@model communityThrive2.Models.companyModel
+@{
+    ViewBag.Title = "ManageCompany";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+@using (Html.BeginForm("ManageCompany", "Company", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <h2>ManageCompany</h2>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+<div class= "form-group">
+    @Html.LabelFor(m => m.companyName, new { @class = "col-md-2 control-label" })
+    <div class= "col-md-10">
+        @Html.TextBoxFor(m =>m.companyName, new { @class = "col-md-2 control-label" })
+        </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.companyDescription, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.companyDescription, new { @class = "col-md-2 control-label" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.companyDemographic, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.companyDemographic, new { @class = "col-md-2 control-label" })
+    </div>
+</div>
+<div class="input-group file-caption-main">
+    <div tabindex="500" class="form-control file-caption  kv-fileinput-caption">
+        <div class="file-caption-name" title=""></div>
+    </div>
+
+    <div class="input-group-btn">
+        <button type="button" tabindex="500" title="Clear selected files" class="btn btn-default fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-trash"></i>  <span class="hidden-xs">Remove</span></button>
+        <button type="button" tabindex="500" title="Abort ongoing upload" class="btn btn-default hide fileinput-cancel fileinput-cancel-button"><i class="glyphicon glyphicon-ban-circle"></i>  <span class="hidden-xs">Cancel</span></button>
+        <button type="submit" tabindex="500" title="Upload selected files" class="btn btn-default fileinput-upload fileinput-upload-button"><i class="glyphicon glyphicon-upload"></i>  <span class="hidden-xs">Upload</span></button>
+        <div tabindex="500" class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;  <span class="hidden-xs">Browse …</span><input id="input-1" type="file" class="file"></div>
+    </div>
+</div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Save Changes" />
+        </div>
+    </div>
+}
+
+

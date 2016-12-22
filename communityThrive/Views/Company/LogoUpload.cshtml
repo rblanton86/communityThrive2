@@ -1,0 +1,25 @@
+﻿@model communityThrive2.Models.companyModel
+@{
+    ViewBag.Title = "LogoUpload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("LogoUpload", "Company", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+<h2>Upload Logo</h2>
+
+<div class="form-group">
+@Html.LabelFor(m => m.companyLogo, new { @class = "col-md-2 control-label" })
+<div class="col-md-10">
+    @Html.TextBoxFor(m => m.companyLogo, new { @class = "col-md-2 control-label" })
+    <form action="CompanyLogo_form.asp">
+        <input type="file" name="CompanyLogo" accept="image/gif, image/jpeg, image/png">
+        <input type="submit">
+    </form>
+</div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" class="btn btn-default" value="Save Changes" />
+    </div>
+</div>
+}
