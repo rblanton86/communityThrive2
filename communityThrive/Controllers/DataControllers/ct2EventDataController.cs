@@ -66,7 +66,7 @@ namespace communityThrive2.Controllers.DataControllers
             db.AddInParameter(Create_Event, "@eventDescription", DbType.String, currentEvent.eventDescription);
             db.AddInParameter(Create_Event, "@eventTypeIDFK", DbType.Int32,currentEvent.eventTypeIDFK);
             db.AddInParameter(Create_Event, "@eventTypeDescription", DbType.String,currentEvent.eventTypeDescription);
-            db.AddInParameter(Create_Event, "@eventDesignation", DbType.String,currentEvent.eventDesignaton);
+            db.AddInParameter(Create_Event, "@eventDesignation", DbType.String,currentEvent.eventDesignation);
 
             success = Convert.ToBoolean(Create_Event.ExecuteNonQuery());
 
@@ -84,7 +84,7 @@ namespace communityThrive2.Controllers.DataControllers
             db.AddInParameter(Update_Event, "@eventDescription", DbType.String, currentEvent.eventDescription);
             db.AddInParameter(Update_Event, "@eventTypeIDFK", DbType.Int32, currentEvent.eventTypeIDFK);
             db.AddInParameter(Update_Event, "@eventTypeDescription", DbType.String, currentEvent.eventTypeDescription);
-            db.AddInParameter(Update_Event, "@eventDesignation", DbType.String, currentEvent.eventDesignaton);
+            db.AddInParameter(Update_Event, "@eventDesignation", DbType.String, currentEvent.eventDesignation);
 
             success = Convert.ToBoolean(Update_Event.ExecuteNonQuery());
 

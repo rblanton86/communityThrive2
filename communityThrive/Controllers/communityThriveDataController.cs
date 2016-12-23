@@ -163,7 +163,7 @@ namespace communityThrive2.DataControllers
                                     companyID = userReadInput,
                                     companyName = daRow.Field<string>("companyName"),
                                     companyDescription = daRow.Field<string>("companyDescription"),
-                                    companyLocation = daRow.Field<string>("companyLocation"),
+                                    //companyLocation = daRow.Field<string>("companyLocation"),
                                     companyDemographic = daRow.Field<string>("companyDemographic")
                                     
 

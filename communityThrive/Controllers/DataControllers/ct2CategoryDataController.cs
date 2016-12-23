@@ -54,7 +54,7 @@ namespace communityThrive2.Controllers.DataControllers
                                   categoryParentID = drRow.Field<int>("parentID"),
                                   isUserDefined = drRow.Field<bool>("isUserDefined"),
                                   isDeleted = drRow.Field<bool>("isDeleted"),
-                                  categoryDescripton = drRow.Field<string>("descripton"),
+                                  categoryDescription = drRow.Field<string>("descripton"),
 
 
                               }).ToList();
@@ -76,7 +76,7 @@ namespace communityThrive2.Controllers.DataControllers
             db.AddInParameter(sp_ct2CreateCategory, "@isUserDefined", SqlDbType.Bit, currentCategory.isUserDefined);
             db.AddInParameter(sp_ct2CreateCategory, "@isDeleted", SqlDbType.Bit, currentCategory.isDeleted);
             db.AddInParameter(sp_ct2CreateCategory, "@dateAdded", SqlDbType.DateTime, currentCategory.dateAdded);
-            db.AddInParameter(sp_ct2CreateCategory, "@categoryDescription", SqlDbType.VarChar, currentCategory.categoryDescripton);
+            db.AddInParameter(sp_ct2CreateCategory, "@categoryDescription", SqlDbType.VarChar, currentCategory.categoryDescription);
 
 
 
