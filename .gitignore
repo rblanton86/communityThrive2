@@ -119,3 +119,5 @@ communityThrive/bin/communityThrive2.pdb
 *.csproj
 
 *.csproj
+
+*.dll
