@@ -18,12 +18,15 @@
     <div> 
         <h4>Please Choose the State of the Company.</h4>
         @*display states from the geolocation model*@
-        @Html.DropDownList("State Dropdown", Model.stateDescription)
+        @*@Html.DropDownList("States", Model.stateDescription)*@
+
         <h4>Please Choose the City of the Company.</h4>
         @*display the cities from the selected state*@
-      
+        @*@Html.DropDownList("Cities", Model.cityDescription)*@
+
         <h4>Please Choose the Company in the City.</h4>
         @*display companies that are in that state/city*@
+        @*@Html.DropDownList("Companies", Model.companyName)*@
 
 
     </div>

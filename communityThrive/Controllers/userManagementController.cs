@@ -38,11 +38,14 @@ namespace communityThrive2.Controllers
 
         public ActionResult sendRequest()
         {
+
+            //this happens after alejandros user creation if they dont want to create a company they are routed here
             return View();
         }
 
         public ActionResult sendRequestYes()
         {
+   
             //perform this action if the user wants to join a company
             return Redirect("~/UserManagement/companyChoice");
 
