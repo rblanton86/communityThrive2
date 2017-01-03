@@ -5,10 +5,12 @@
 }
 <h2>@ViewBag.Title.</h2>
 <div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
+    <div class="col-md-2 col-md-10">
+        <section id="companyForm">
             @using (Html.BeginForm("ManageCompany", "Company", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
+                <h5> Update Company Info</h5>
+                <hr/>
                 @Html.ValidationSummary("", new { @class = "text-danger" })
                 <div class="form-group">
                     @Html.LabelFor(m => m.companyName, new { @class = "col-md-2 control-label" })
