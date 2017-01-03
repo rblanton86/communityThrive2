@@ -32,7 +32,40 @@ namespace communityThrive2.Controllers
 
         }
 
+        /// <summary>
+        /// begining of the user request to join a company methods.
+        /// </summary>
 
-    } 
-    
+        public ActionResult sendRequest()
+        {
+            return View();
+        }
+
+        public ActionResult sendRequestYes()
+        {
+            //perform this action if the user wants to join a company
+            return Redirect("~/UserManagement/companyChoice");
+
+        }
+
+        public ActionResult sendRequestNo()
+        {
+            //perform this action if a user does not want to join a company 
+            return Redirect("~/Home/Index");
+
+        }
+
+        public ActionResult companyChoice()
+        {
+            
+            return View();
+        }
+
+        /// <summary>
+        /// end of the user request to join a company methods.
+        /// </summary>
+
+
+    }
+
 }
