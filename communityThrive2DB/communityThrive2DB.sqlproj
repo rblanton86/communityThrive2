@@ -57,5 +57,44 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="StoredProcedures" />
+    <Folder Include="Schema" />
+    <Folder Include="bin" />
+    <Folder Include="bin\Debug" />
+    <Folder Include="obj" />
+    <Folder Include="obj\Debug" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema\alterCt2Inventory191216.sql" />
+    <Build Include="Schema\alterCt2Item191216.sql" />
+    <Build Include="Schema\alterCt2Stock191216.sql" />
+    <Build Include="Schema\CreateTable stockItem.sql" />
+    <Build Include="Schema\ct2category.sql" />
+    <Build Include="Schema\ct2City.sql" />
+    <Build Include="Schema\ct2company.sql" />
+    <Build Include="Schema\ct2dontation.sql" />
+    <Build Include="Schema\ct2Event.sql" />
+    <Build Include="Schema\ct2EventType.sql" />
+    <Build Include="Schema\ct2Family.sql" />
+    <Build Include="Schema\ct2HouseholdInformation.sql" />
+    <Build Include="Schema\ct2Inventory.sql" />
+    <Build Include="Schema\ct2Item.sql" />
+    <Build Include="Schema\ct2Privileges.sql" />
+    <Build Include="Schema\ct2Receipt.sql" />
+    <Build Include="Schema\ct2Recipient.sql" />
+    <Build Include="Schema\ct2recipientAddressID.sql" />
+    <Build Include="Schema\ct2recipientDonationTracking.sql" />
+    <Build Include="Schema\ct2Role.sql" />
+    <Build Include="Schema\ct2RolePrivileges.sql" />
+    <Build Include="Schema\ct2State.sql" />
+    <Build Include="Schema\ct2Stock.sql" />
+    <Build Include="Schema\ct2User.sql" />
+    <Build Include="Schema\ct2UserRole.sql" />
+    <Build Include="Schema\ct2UserType.sql" />
+    <Build Include="Schema\DropConstraintCt2Stock.sql" />
+    <Build Include="Schema\DropConstraitCt2Inventory.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Schema\orderOfScripts.txt" />
   </ItemGroup>
 </Project>

@@ -45,3 +45,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+communityThrive2DB/communityThrive2DB.sqlproj
+*.jfm
+communityThrive2DB/communityThrive2DB.dbmdl
+*.sqlproj
