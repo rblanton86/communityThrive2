@@ -13,23 +13,49 @@ namespace communityThrive2.Controllers
         // GET: userLogin
         public ActionResult userLogin()
         {
+            
             return View();
         }
-        
+
+        /// <summary>
+        /// if user login is in the system, continue logging in if not return back to current view
+        /// </summary>
+
         [HttpPost]
         public ActionResult Login(ct2UserDataController currentUser)
-        { 
-             
-            if(currentUser == null) 
-            { 
-                return RedirectToAction("LoggedIn");
+        {
+
+            if (currentUser == null)
+            {
+                return RedirectToAction("userLoginChoice");
             }
             else
             {
                 return View("userLogin");
             }
 
+        }
 
+        public ActionResult userLoginChoice()
+        {
+           
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult LogInChoice()
+        {
+            //if ()
+            //{
+            //    return RedirectToAction("Company Homepage");
+            //}
+
+            //else
+            //{
+            //    return RedirectToAction("Manage Company");
+            //}
+
+            return View();
         }
 
         /// <summary>

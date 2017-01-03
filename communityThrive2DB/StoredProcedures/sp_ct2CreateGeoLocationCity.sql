@@ -35,13 +35,12 @@ SET NOCOUNT ON;
 		INSERT ct2City
 		(
 			 [cityDescription]
-			,[stateIDFK]
+			
 		)
 
 		VALUES
 		(
-			@cityDescription,
-			@stateIDFK
+			@cityDescription
 		)
 
 
