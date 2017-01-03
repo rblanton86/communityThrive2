@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.Common;
 using System.Web.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
-using communityThrive2.Models.communityThriveDeploymentModels;
+using communityThrive2.Models;
 /*============================================= 
 Description: Data Controller, all CRUD's, for INVENTORYITEM
 Author: Alejandro Castillo   

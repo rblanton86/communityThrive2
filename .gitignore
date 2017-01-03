@@ -121,3 +121,5 @@ communityThrive/bin/communityThrive2.pdb
 *.csproj
 
 *.dll
+
+communityThrive/obj/Debug/communityThrive.csproj.FileListAbsolute.txt

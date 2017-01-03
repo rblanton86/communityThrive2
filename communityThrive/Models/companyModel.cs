@@ -18,7 +18,7 @@ namespace communityThrive2.Models
         public geoLocationModel cityID { get; set; }
 
         public string companyDemographic { get; set; }
-        public Bitmap companyLogo { get; set; }
+        public Byte companyLogo { get; set; }
 
         //add a list to contain the users in the company for reference at a late time
 

@@ -163,7 +163,6 @@ namespace communityThrive2.DataControllers
                                     companyID = userReadInput,
                                     companyName = daRow.Field<string>("companyName"),
                                     companyDescription = daRow.Field<string>("companyDescription"),
-                                    companyLocation = daRow.Field<string>("companyLocation"),
                                     companyDemographic = daRow.Field<string>("companyDemographic")
                                     
 
@@ -246,7 +245,7 @@ namespace communityThrive2.DataControllers
 
             return success;
         }
-        public donationModel CreateCompany(donationModel currentDonation)
+        public donationModel CreateDonation(donationModel currentDonation)
         {
             ///uses create procedure to insert values into the model parameters
             DbCommand create_Donation = db.GetStoredProcCommand("sp_createct2Donation");
@@ -355,7 +354,7 @@ namespace communityThrive2.DataControllers
 
                     return 1;
                 }
-                catch (Exception ex)
+                catch
                 {
                     return 0;
                 }
@@ -426,7 +425,7 @@ namespace communityThrive2.DataControllers
                     db.ExecuteNonQuery(sp_deletect2GeoLocationCity);
                     success = Convert.ToBoolean(db.GetParameterValue(sp_deletect2GeoLocationCity, "@success"));
                 }
-                catch (Exception e)
+                catch
                 {
                     success = false;
                     throw;
