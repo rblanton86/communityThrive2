@@ -53,12 +53,11 @@ namespace communityThrive2.Controllers.DataControllers
                                    companyID = drRow.Field<int>("companyID"),
                                    companyName = drRow.Field<string>("companyName"),
                                    companyDescription = drRow.Field<string>("companyDescription"),
-<<<<<<< HEAD
-                                   stateID = drRow.Field<geoLocationModel>("stateID"),
-                                   cityID =drRow.Field<geoLocationModel>("cityID"),
-=======
+                                   //stateID = drRow.Field<geoLocationModel>("stateID"),
+                                   //cityID =drRow.Field<geoLocationModel>("cityID"),
+
                                    //companyLocation = drRow.Field<geoLocationModel>("stateID"),
->>>>>>> origin/master
+
                                    companyDemographic = drRow.Field<string>("companyDemographic")
 
                                }).ToList();
