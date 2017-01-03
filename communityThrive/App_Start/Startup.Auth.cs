@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using communityThrive.Models;
+using communityThrive2.Models;
 
-namespace communityThrive
+namespace communityThrive2
 {
     public partial class Startup
     {

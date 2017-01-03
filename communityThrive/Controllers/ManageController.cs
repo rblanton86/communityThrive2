@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using communityThrive.Models;
+using communityThrive2.Models;
 
-namespace communityThrive.Controllers
+namespace communityThrive2.Controllers
 {
     [Authorize]
     public class ManageController : Controller

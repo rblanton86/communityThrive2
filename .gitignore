@@ -49,3 +49,17 @@ communityThrive2DB/communityThrive2DB.sqlproj
 *.jfm
 communityThrive2DB/communityThrive2DB.dbmdl
 *.sqlproj
+*.suo
+.vs/communityThrive2/v14/.suo
+*.suo
+.vs/config/applicationhost.config
+*.suo
+communityThrive/.vs/config/applicationhost.config
+*.pdb
+*.csproj
+communityThrive/communityThrive2.csproj.user
+communityThrive/obj/Debug/communityThrive2.csproj.FileListAbsolute.txt
+*.cache
+communityThrive/Views/Web.config
+*.dacpac
+communityThrive2.sln

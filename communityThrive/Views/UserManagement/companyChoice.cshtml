@@ -1,0 +1,29 @@
+﻿@using communityThrive2.Models
+
+@model geoLocationModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; //referneces the page layout that is stored in the shared folder
+    ViewBag.Title = "Choose Company";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div> 
+        <h4>Please Choose the State of the Company.</h4>
+        @*display states from the geolocation model*@
+        <h4>Please Choose the City of the Company.</h4>
+        @*display the cities from the selected state*@
+        <h4>Please Choose the Company in the City.</h4>
+        @*display companies that are in that state/city*@
+
+
+    </div>
+</body>
+</html>

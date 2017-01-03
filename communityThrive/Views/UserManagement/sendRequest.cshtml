@@ -1,0 +1,32 @@
+﻿@*here i need to add the user model and take their information to send it to a company.*@
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; //referneces the page layout that is stored in the shared folder 
+    ViewBag.Title = "Join A Company?";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <h2>Would you like to join a company?</h2>
+    @using (Html.BeginForm("sendRequestYes", "userRequest"))
+    {
+        <input type="submit" name="button" class="ui-button" value="Yes" />
+        <h6>!!!Be Aware That If You Dont Join A Company Now You Cannot Use The Application And Will Be Returned To The Homepage!!!</h6>
+    }
+
+    @using (Html.BeginForm("sendRequestNo","userRequest"))
+    {
+        <input type="submit" name="button" class="ui-button" value="No" />
+    }
+    @*<div>
+        <button type="button" onclick="location.href = '@Url.Action("Index", "Home")' ">Return Home</button>
+    </div>*@ 
+</body>
+</html>

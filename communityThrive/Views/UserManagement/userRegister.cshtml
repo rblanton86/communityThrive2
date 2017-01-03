@@ -1,0 +1,81 @@
+﻿@model communityThrive2.Models.userModel
+    
+@{
+    ViewBag.Title = "userRegister";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    communityThrive2.Models.userModel currentModel = new communityThrive2.Models.userModel();
+}
+
+<title>userRegister</title>
+
+@using (Html.BeginForm("userRegister", "RegisterUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.LabelFor(userModel => currentModel.firstName, "First Name")
+        @Html.TextBoxFor(userModel => currentModel.firstName)
+        @Html.ValidationMessage("First Name")
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.lastName, "Last Name")
+        @Html.TextBoxFor(userModel => currentModel.lastName)
+        @Html.ValidationMessage("Last Name")
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.phoneNumber, "Phone Number")
+        @Html.TextBoxFor(userModel => currentModel.phoneNumber)
+        @Html.ValidationMessage("Phone Number")
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.emailAddress, "Email Address")
+        @Html.TextBoxFor(userModel => currentModel.emailAddress)
+        @Html.ValidationMessage("Email Address")
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.streetAddress, "Street Address")
+        @Html.TextBoxFor(userModel => currentModel.streetAddress)
+        @Html.ValidationMessage("Street Address")
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.cityIDFK, "City")
+        @Html.TextBoxFor(userModel => currentModel.cityIDFK)
+        @Html.ValidationMessage("City")
+    </div>
+    <div>
+
+        @Html.LabelFor(userModel => currentModel.stateIDFK, "State")
+        @Html.TextBoxFor(userModel => currentModel.stateIDFK)
+        @Html.ValidationMessage("State")
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.role.roleDescription, "Role Description")
+        @Html.TextBoxFor(userModel => currentModel.role.roleDescription)
+        @Html.ValidationMessage("Role Description")
+    </div>
+
+    <div>
+        @Html.LabelFor(userModel => currentModel.emailAddress,"Email Address")
+        @Html.TextBoxFor(userModel => currentModel.emailAddress)
+        @Html.ValidationMessage("Email Address")
+
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.companyIDFK,"Company ID")
+        @Html.TextBoxFor(userModel => currentModel.companyIDFK)
+        @Html.ValidationMessage("Company ID")
+    </div>
+    <div>
+        @Html.LabelFor(userModel => currentModel.userPassword,"User Password")
+        @Html.TextBoxFor(userModel => currentModel.userPassword)
+        @Html.ValidationMessage("User Password")
+    </div>
+
+
+    <div>
+        <label>&nbsp;</label>
+        <input type="submit" value="Submit" class="submit" />
+    </div>
+
+}
+
+    <meta name="viewport" content="width=device-width" />
