@@ -33,8 +33,8 @@ namespace communityThrive2.Controllers.DataControllers
             DbCommand create_Company = db.GetStoredProcCommand("sp_createct2Company");
             db.AddInParameter(create_Company, "@companyID", DbType.Int32, currentCompany.companyID);
             db.AddInParameter(create_Company, "@companyName", DbType.String, currentCompany.companyName);
-            db.AddInParameter(create_Company, "@stateID", DbType.Int32, currentCompany.stateID);
-            db.AddInParameter(create_Company, "@cityID", DbType.Int32, currentCompany.cityID);
+            db.AddInParameter(create_Company, "@stateID", DbType.Int32, currentCompany.companyLocation.stateID);
+            db.AddInParameter(create_Company, "@cityID", DbType.Int32, currentCompany.companyLocation.selectedCity.cityID);
             db.AddInParameter(create_Company, "@companyDemographic", DbType.Int32, currentCompany.companyDemographic);
             return currentCompany;
         }
@@ -53,8 +53,12 @@ namespace communityThrive2.Controllers.DataControllers
                                    companyID = drRow.Field<int>("companyID"),
                                    companyName = drRow.Field<string>("companyName"),
                                    companyDescription = drRow.Field<string>("companyDescription"),
+<<<<<<< HEAD
                                    stateID = drRow.Field<geoLocationModel>("stateID"),
                                    cityID =drRow.Field<geoLocationModel>("cityID"),
+=======
+                                   //companyLocation = drRow.Field<geoLocationModel>("stateID"),
+>>>>>>> origin/master
                                    companyDemographic = drRow.Field<string>("companyDemographic")
 
                                }).ToList();
@@ -69,8 +73,8 @@ namespace communityThrive2.Controllers.DataControllers
             db.AddInParameter(update_Company, "@companyID", DbType.Int32, selectedCompany.companyID);
             db.AddInParameter(update_Company, "@companyName", DbType.String, selectedCompany.companyName);
             db.AddInParameter(update_Company, "@companyDescription", DbType.String, selectedCompany.companyDescription);
-            db.AddInParameter(update_Company, "@stateID", DbType.Int32, selectedCompany.stateID);
-            db.AddInParameter(update_Company, "@cityID", DbType.Int32, selectedCompany.cityID);
+            db.AddInParameter(update_Company, "@stateID", DbType.Int32, selectedCompany.companyLocation.stateID);
+            db.AddInParameter(update_Company, "@cityID", DbType.Int32, selectedCompany.companyLocation.selectedCity.cityID);
             db.AddInParameter(update_Company, "@companyDemographic", DbType.String, selectedCompany.companyDemographic);
 
             success = Convert.ToBoolean(update_Company.ExecuteNonQuery());
@@ -97,6 +101,43 @@ namespace communityThrive2.Controllers.DataControllers
             {
                 success = false;
             }
+
+            return success;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="getCompanyLogo"></param>
+        /// <returns></returns>
+        public byte[] getCompanyLogo(companyModel getCompanyLogo)
+        {
+            byte[] image;
+            ///uses read procedure to get company logo
+            DbCommand get_CompanyLogo = db.GetStoredProcCommand("sp_readCt2CompanyLogo");
+
+            db.AddInParameter(get_CompanyLogo, "@companyLogo", DbType.Binary, getCompanyLogo.companyLogo);
+
+            image = (byte[])get_CompanyLogo.ExecuteScalar();
+
+            return image;
+          
+        }
+
+        public bool insertCompanyLogo(companyModel currentCompany)
+        {
+            bool success = false;
+
+            DbCommand insert_CompanyLogo = db.GetStoredProcCommand("sp_createCt2CompanyLogo");
+
+            db.AddInParameter(insert_CompanyLogo, "@companyIDFK", DbType.Int32, currentCompany.companyID);
+            db.AddInParameter(insert_CompanyLogo, "@companyLogo", DbType.Binary, currentCompany.companyLogo);
+
+            if(db.ExecuteNonQuery(insert_CompanyLogo)>0)
+            {
+                success = true;
+            }
+            else { success = false; }
 
             return success;
         }

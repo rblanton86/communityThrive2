@@ -34,33 +34,40 @@
     <div>
         @Html.LabelFor(userModel => currentModel.streetAddress, "Street Address")
         @Html.TextBoxFor(userModel => currentModel.streetAddress)
-        @Html.ValidationMessage("First Name")
+        @Html.ValidationMessage("Street Address")
     </div>
     <div>
         @Html.LabelFor(userModel => currentModel.cityIDFK, "City")
         @Html.TextBoxFor(userModel => currentModel.cityIDFK)
+        @Html.ValidationMessage("City")
     </div>
     <div>
 
         @Html.LabelFor(userModel => currentModel.stateIDFK, "State")
         @Html.TextBoxFor(userModel => currentModel.stateIDFK)
+        @Html.ValidationMessage("State")
     </div>
     <div>
         @Html.LabelFor(userModel => currentModel.role.roleDescription, "Role Description")
         @Html.TextBoxFor(userModel => currentModel.role.roleDescription)
+        @Html.ValidationMessage("Role Description")
     </div>
 
     <div>
         @Html.LabelFor(userModel => currentModel.emailAddress,"Email Address")
         @Html.TextBoxFor(userModel => currentModel.emailAddress)
+        @Html.ValidationMessage("Email Address")
+
     </div>
     <div>
         @Html.LabelFor(userModel => currentModel.companyIDFK,"Company ID")
         @Html.TextBoxFor(userModel => currentModel.companyIDFK)
+        @Html.ValidationMessage("Company ID")
     </div>
     <div>
         @Html.LabelFor(userModel => currentModel.userPassword,"User Password")
         @Html.TextBoxFor(userModel => currentModel.userPassword)
+        @Html.ValidationMessage("User Password")
     </div>
 
 

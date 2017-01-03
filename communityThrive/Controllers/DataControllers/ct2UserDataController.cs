@@ -44,6 +44,10 @@ namespace communityThrive2.Controllers
             db.AddInParameter(create_User, "@streetAddress", DbType.Int32, currentUser.streetAddress);
             db.AddInParameter(create_User, "@cityIDFK", DbType.Int32, currentUser.cityIDFK);
             db.AddInParameter(create_User, "@stateIDFK", DbType.Int32, currentUser.stateIDFK);
+<<<<<<< HEAD
+=======
+            //db.AddInParameter(create_User, "@geoLocation", DbType.Object, currentUser.geoLocation);
+>>>>>>> origin/master
             db.AddInParameter(create_User, "@zipcode", DbType.Int32, currentUser.zipcode);
             return currentUser;
         }
@@ -72,7 +76,7 @@ namespace communityThrive2.Controllers
                                    phoneNumber = drRow.Field<string>("phoneNumber"),
                                    streetAddress = drRow.Field<string>("streetAddress"),
                                    cityIDFK = drRow.Field<int>("cityIDFK"),
-                                   geoLocation = drRow.Field<geoLocationModel>("geoLocation"),
+                                   //geoLocation = drRow.Field<geoLocationModel>("geoLocation"),
 
                                }).ToList();
             return userData;
@@ -96,6 +100,10 @@ namespace communityThrive2.Controllers
             db.AddInParameter(update_User, "@streetAddress", DbType.Int32, selectedUser.streetAddress);
             db.AddInParameter(update_User, "@cityIDFK", DbType.Int32, selectedUser.cityIDFK);
             db.AddInParameter(update_User, "@stateIDFK", DbType.Int32, selectedUser.stateIDFK);
+<<<<<<< HEAD
+=======
+            db.AddInParameter(update_User, "@geoLocation", DbType.Object, selectedUser.geolocation);
+>>>>>>> origin/master
             db.AddInParameter(update_User, "@zipcode", DbType.Int32, selectedUser.zipcode);
 
             success = Convert.ToBoolean(update_User.ExecuteNonQuery());

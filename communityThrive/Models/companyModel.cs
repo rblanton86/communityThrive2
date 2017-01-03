@@ -14,11 +14,12 @@ namespace communityThrive2.Models
 
         public string companyDescription { get; set; }
 
-        public geoLocationModel stateID { get; set; }
-        public geoLocationModel cityID { get; set; }
+        public geoLocationModel companyLocation { get; set; }
 
         public string companyDemographic { get; set; }
         public Byte companyLogo { get; set; }
+
+        public byte[] companyLogo { get; set; }
 
         //add a list to contain the users in the company for reference at a late time
 
