@@ -3,79 +3,124 @@
 @{
     ViewBag.Title = "userRegister";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
     communityThrive2.Models.userModel currentModel = new communityThrive2.Models.userModel();
+
+    Validation.RequireField("firstName", "You must enter First name.");
+    Validation.RequireField("lastName", "Last name is required.");
+    Validation.RequireField("phoneNumber", "Enter Phone Number.");
+    Validation.RequireField("emailAddress", "You must enter Email address.");
+    Validation.RequireField("streetAddress", "Account must have a residence.");
+    Validation.RequireField("cityIDFK", "You haven't entered a year");
+    Validation.RequireField("stateIDFK", "You haven't entered a year");
+    Validation.RequireField("roleDescription", "You haven't entered a year");
+    Validation.RequireField("companyIDFK", "You haven't entered a year");
+    Validation.RequireField("userPassword", "You haven't entered a year");
+
+
+    var firstName = "";
+    var lastName = "";
+    var emailAddress = "";
+    var streetAddress = "";
+    var cityIDFK = "";
+    var stateIDFK = "";
+    var roleDescription = "";
+    var companyIDFK = "";
+    var userPassword = "";
+
+    if(IsPost && Validation.IsValid()){
+       firstName = Request.Form["firstName"];
+       lastName = Request.Form["lastName"];
+       emailAddress = Request.Form["emailAddress"];
+       streetAddress = Request.Form["streetAddress"];
+       cityIDFK = Request.Form["cityIDFK"];
+       stateIDFK = Request.Form["stateIDFK"];
+       roleDescription = Request.Form["roleDescription"];
+       companyIDFK = Request.Form["companyIDFK"];
+       userPassword =Request.Form["userPassword"];
+
+       var db = Database.Open("communityThrive2");
+       var insertCommand = "INSERT INTO Movies (Title, Genre, Year) Values(@0, @1, @2)";
+       db.Execute(insertCommand, title, genre, year);
+       Response.Redirect("~/Movies");
+
+
 }
-
+}
+<!DOCTYPE html>
+<html>
+<head>
 <title>userRegister</title>
-
+    </head>
+<body>
 @using (Html.BeginForm("userRegister", "RegisterUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
+{ 
+<!-- STRING FIRST NAME -->
     <div>
         @Html.LabelFor(userModel => currentModel.firstName, "First Name")
         @Html.TextBoxFor(userModel => currentModel.firstName)
         @Html.ValidationMessage("First Name")
     </div>
+<!-- STRING LAST NAME -->
     <div>
         @Html.LabelFor(userModel => currentModel.lastName, "Last Name")
         @Html.TextBoxFor(userModel => currentModel.lastName)
         @Html.ValidationMessage("Last Name")
     </div>
+<!-- STRING FIRST NAME -->
     <div>
         @Html.LabelFor(userModel => currentModel.phoneNumber, "Phone Number")
         @Html.TextBoxFor(userModel => currentModel.phoneNumber)
         @Html.ValidationMessage("Phone Number")
     </div>
-    <div>
+  <!-- STRING FIRST NAME -->
+  <div>
         @Html.LabelFor(userModel => currentModel.emailAddress, "Email Address")
         @Html.TextBoxFor(userModel => currentModel.emailAddress)
         @Html.ValidationMessage("Email Address")
     </div>
-    <div>
+   <!-- STRING FIRST NAME -->
+ <div>
         @Html.LabelFor(userModel => currentModel.streetAddress, "Street Address")
         @Html.TextBoxFor(userModel => currentModel.streetAddress)
         @Html.ValidationMessage("Street Address")
     </div>
-    <div>
+   <!-- STRING FIRST NAME -->
+ <div>
         @Html.LabelFor(userModel => currentModel.cityIDFK, "City")
         @Html.TextBoxFor(userModel => currentModel.cityIDFK)
         @Html.ValidationMessage("City")
     </div>
-    <div>
+ <!-- STRING FIRST NAME -->
+   <div>
 
         @Html.LabelFor(userModel => currentModel.stateIDFK, "State")
         @Html.TextBoxFor(userModel => currentModel.stateIDFK)
         @Html.ValidationMessage("State")
     </div>
-    <div>
+  <!-- STRING FIRST NAME -->
+  <div>
         @Html.LabelFor(userModel => currentModel.role.roleDescription, "Role Description")
         @Html.TextBoxFor(userModel => currentModel.role.roleDescription)
         @Html.ValidationMessage("Role Description")
     </div>
-
-    <div>
-        @Html.LabelFor(userModel => currentModel.emailAddress,"Email Address")
-        @Html.TextBoxFor(userModel => currentModel.emailAddress)
-        @Html.ValidationMessage("Email Address")
-
-    </div>
-    <div>
+  <!-- STRING FIRST NAME -->
+  <div>
         @Html.LabelFor(userModel => currentModel.companyIDFK,"Company ID")
         @Html.TextBoxFor(userModel => currentModel.companyIDFK)
         @Html.ValidationMessage("Company ID")
     </div>
-    <div>
+  <!-- STRING FIRST NAME -->
+  <div>
         @Html.LabelFor(userModel => currentModel.userPassword,"User Password")
         @Html.TextBoxFor(userModel => currentModel.userPassword)
         @Html.ValidationMessage("User Password")
     </div>
-
-
     <div>
         <label>&nbsp;</label>
         <input type="submit" value="Submit" class="submit" />
     </div>
-
+    </body>
+</html>
 }
 
     <meta name="viewport" content="width=device-width" />
