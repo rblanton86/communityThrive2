@@ -40,7 +40,7 @@ namespace communityThrive2.Controllers.DataControllers
             {
                 if (db == null)
                 {
-                    db = new SqlDatabase(WebConfigurationManager.ConnectionStrings["connectionString"].ToString());
+                    db = new SqlDatabase(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
                 }
             }
         }

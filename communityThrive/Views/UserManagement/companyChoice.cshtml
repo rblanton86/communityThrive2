@@ -1,6 +1,6 @@
 ﻿@using communityThrive2.Models
 
-@model geoLocationModel
+@model stateModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml"; //referneces the page layout that is stored in the shared folder
@@ -18,7 +18,7 @@
     <div> 
         <h4>Please Choose the State of the Company.</h4>
         @*display states from the geolocation model*@
-        @*@Html.DropDownList("States", Model.stateDescription)*@
+        @Html.DropDownList("stateDescription", (SelectList)ViewBag.stateModel,"Select A State")
 
         <h4>Please Choose the City of the Company.</h4>
         @*display the cities from the selected state*@
