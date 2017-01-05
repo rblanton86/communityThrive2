@@ -129,5 +129,23 @@ namespace communityThrive2.Controllers
 
             return success;
         }
+
+        public List<loginModel> GetLogin()
+        {
+            ///uses read procedure by user ID and returns corresponding values
+            DbCommand get_Login = db.GetStoredProcCommand("sp_selectct2User");
+            db.AddInParameter(get_Login, "@userID", DbType.Int32);
+            DataSet ds = db.ExecuteDataSet(get_Login);
+
+            var userLogin = (from drRow in ds.Tables[0].AsEnumerable()
+                            select new loginModel()
+                            {
+                                 
+                                emailAddress = drRow.Field<string>("emailAddress"),
+                                userPassword = drRow.Field<string>("userPassword"),
+
+                            }).ToList();
+            return userLogin;
+        }
     }
 }

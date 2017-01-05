@@ -1,22 +1,48 @@
-﻿@model communityThrive2.Models.userModel
+﻿@model communityThrive2.Models.loginModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml"; 
     ViewBag.Title = "UserLogin";
 }
 
+<script>
+    $(document).ready(function () {
+        $("#loginButton").click(function () {
+            var loginButton = $("#loginButton");
+            var currentLogin = $("#currentLogin")
+
+            alert("Hello");
+
+            $.ajax({
+                type: "POST",
+                url: "/UserManagement/Login",
+                data: $('#currentLogin').serialize(),
+                datatype: "html",
+                success: function (data) {
+                    $('#result').html(data);
+                }
+            });
+        });
+    });
+</script>
+
+
 <h2>
    User Login
 </h2>
 <body>
-    <div>
-        <label><b>Email</b></label>
-        <input type="text" placeholder="Enter Email Address" name="email" required>
-
-        <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-
-        <button type="submit">Login</button> 
-    </div>
+    <form id="currentLogin">
+        <div>
+        @Html.Label("emailAddress","Email Address")
+        @Html.TextBox("emailAddress","Email Address")
+        </div>
+        <div>
+            @Html.Label("userPassword","Password")
+            @Html.TextBox("userPassword","Password")
+        </div>
+        </form>
+    <p>
+        <input id="loginButton" type="button" value="Login"/> 
+    </p>
 </body>
 
     

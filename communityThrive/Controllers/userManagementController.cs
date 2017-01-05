@@ -13,8 +13,17 @@ namespace communityThrive2.Controllers
         // GET: userLogin
         public ActionResult userLogin()
         {
-            
+           
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(loginModel login)
+        {
+            string email = login.emailAddress;
+            string password = login.userPassword;
+
+            return View(login);
         }
 
         /// <summary>
@@ -22,7 +31,7 @@ namespace communityThrive2.Controllers
         /// </summary>
 
         [HttpPost]
-        public ActionResult Login(ct2UserDataController currentUser)
+        public ActionResult LoggedIn(ct2UserDataController currentUser)
         {
 
             if (currentUser == null)

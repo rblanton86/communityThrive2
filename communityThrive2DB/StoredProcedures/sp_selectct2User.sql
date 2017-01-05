@@ -37,6 +37,7 @@ BEGIN
 		LEFT JOIN ct2UserType ut ON usr.userTypeIDFK = ut.userTypeID
 		LEFT JOIN ct2City cy ON usr.cityIDFK = cy.cityID
 		LEFT JOIN ct2State st ON usr.stateIDFK = st.StateID
+		WHERE usr.userID = @userID 
 		
 		ORDER BY usr.userID, usr.firstName, usr.lastName
     END TRY
