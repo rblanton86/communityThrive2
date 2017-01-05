@@ -11,13 +11,12 @@ namespace communityThrive2.Controllers
     {
         // GET: RegisterUser
         //[HttpPost]
-        public ActionResult userRegister()
+        public ActionResult userRegister(FormCollection Collection)
         {
             userModel usMod = new userModel();
             roleModel roMod = new roleModel();
             companyModel compModel = new companyModel();
             geoLocationModel geoLoca = new geoLocationModel();
-
             return View();
         }
     }

@@ -67,6 +67,43 @@ namespace communityThrive2.Controllers
             return View();
         }
 
+        /*
+        * Begin User Creation
+        * */
+        //GET:/UserManagement/userRegister
+
+        public ActionResult userRegister(ct2UserDataController CreateUser)
+        {
+            return View();
+        }
+        //POST: /UserManagement/userRegister
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Register(FormCollection form)
+        {
+            userModel usMod = new userModel();
+            roleModel roMod = new roleModel();
+            companyModel compModel = new companyModel();
+            geoLocationModel geoLoca = new geoLocationModel();
+            cityModel citMod = new cityModel();
+
+            usMod.firstName = form["firstName"];
+            usMod.lastName = form["lastName"];
+            usMod.emailAddress = form["emailAddress"];
+            usMod.streetAddress = form["streetAddress"];
+            citMod.cityDescription = form["cityIDFK"];
+            geoLoca.stateDescription = form["stateIDFK"];
+            usMod.zipcode = Convert.ToInt32(form["zipcode"]);
+
+            return View();
+        }
+
+       
+
+        ///<summary>
+        /// ending of user register form
+        /// </summary>
+                
         /// <summary>
         /// begining of the user request to join a company methods.
         /// </summary>
