@@ -21,6 +21,10 @@ namespace communityThrive2.Controllers.DataControllers
     {
         public static SqlDatabase db;
 
+        /// <summary>
+        /// The beginning of the ct2GeoLocationDataController constructor
+        /// establishes db connection with "DefaultConnection"
+        /// </summary>
 
         public ct2GeoLocationDataController(string connectionstring)
         {
@@ -42,6 +46,13 @@ namespace communityThrive2.Controllers.DataControllers
             }
         }
 
+        /// <summary>
+        /// the end of the constructor for the geolocation controller
+        /// </summary>
+        
+        ///<summary>
+        ///The beginning GetLocation method that takes information and populates the geolocation model
+        /// </summary>
         public List<geoLocationModel> GetLocation(int locationID)
         {
             // Readies stored proc from server.
@@ -66,6 +77,14 @@ namespace communityThrive2.Controllers.DataControllers
             return cities;
         }
 
+        ///<summary>
+        ///The end of the GetLocation method 
+        /// </summary>
+
+
+        ///<summary>
+        ///The beginning of the GetListCities method that gets all the cities relating to the state selected
+        /// </summary>
         public List<cityModel> GetListCities(int cityID)
         {
             // Readies stored proc from server.
@@ -88,6 +107,15 @@ namespace communityThrive2.Controllers.DataControllers
             return cities;
         }
 
+        ///<summary>
+        ///The end of the GetListCities method
+        /// </summary>
+
+
+        ///<summary>
+        ///The begining of the GetListStates method that takes all the states from the database and displays them
+        /// </summary>
+        
         public SelectList GetListStates()
         {
             // Readies stored proc from server.
@@ -109,8 +137,12 @@ namespace communityThrive2.Controllers.DataControllers
             return new SelectList(states,"Value","Text");
         }
 
-       ///Create Procedure Data Controller
-       
+        ///<summary>
+        ///The end of the GetListStates method 
+        /// </summary>
+
+        ///Create Procedure Data Controller
+
         //public int createGeoLocationCity(geoLocationModel currentLocation)
         //{
         //    int success;
@@ -214,7 +246,7 @@ namespace communityThrive2.Controllers.DataControllers
         //}
 
 
-    
+
 
         //public bool DeleteState(geoLocationModel removingState)
         //{

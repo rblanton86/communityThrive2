@@ -36,6 +36,7 @@ namespace communityThrive2.Controllers
         /// begining of the user request to join a company methods.
         /// </summary>
 
+        //This is the user selection if they would like to join a company //sendRequest View//
         public ActionResult sendRequest()
         {
 
@@ -43,13 +44,15 @@ namespace communityThrive2.Controllers
             return View();
         }
 
+        //This action is performed if the user selects they do not want to join a company
         public ActionResult sendRequestNo()
         {
-            //perform this action if a user does not want to join a company 
+            //re-routes the user to the home page because they cant preform any other actions
             return Redirect("~/Home/Index");
 
         }
 
+        //this is the selection where the user finds the company they wish to send a requets too
         public ActionResult companyChoice()
         {
             ViewBag.stateModel = companyChoicePopulateState();
@@ -58,6 +61,7 @@ namespace communityThrive2.Controllers
             return View();
         }
 
+        //this method populates the state list for the companyChoice view
         public SelectList companyChoicePopulateState()
         {
 
@@ -70,6 +74,7 @@ namespace communityThrive2.Controllers
             return new SelectList(stateModel,"Value","Text");
         }
 
+        //this method populates the city table based on the state selected
         //public SelectList companyChoicePopulateCity()
         //{
 
