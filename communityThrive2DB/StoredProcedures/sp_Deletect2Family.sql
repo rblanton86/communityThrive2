@@ -13,11 +13,8 @@ GO
 -- Description:	Delete Family
 -- =============================================
 CREATE PROCEDURE sp_Deletect2Family
-	@familyMemberID INT,
-	@recipientIDFK INT,
-	@familyMemberGender INT,
-	@familyMemberAge INT,
-	@isSpouse BIT
+	@familyMemberID INT
+	
 
 
 
@@ -27,13 +24,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     
-	UPDATE ct2Family
-	SET 
-		recipientIDFK = @recipientIDFK,
-		familyMemberGender = @familyMemberGender,
-		familyMemberAge = @familyMemberAge,
-		isSpouse = @isSpouse
-
+	DELETE FROM ct2Family
 	WHERE familyMemberID = @familyMemberID
 END
 GO

@@ -13,9 +13,8 @@ GO
 -- Description:	Delete Receipt
 -- =============================================
 CREATE PROCEDURE sp_Deletect2Receipt
-	@receiptID INT,
-	@userIDFK INT,
-	@donationIDFK INT
+	@receiptID INT
+	
 
 
 
@@ -25,10 +24,8 @@ BEGIN
 	SET NOCOUNT ON;
 
     
-	UPDATE ct2Receipt
-	SET 
-		userIDFK = @userIDFK,
-		donationIDFK = @donationIDFK
+	
+	DELETE FROM ct2Receipt	
 	WHERE receiptID = @receiptID
 END
 GO

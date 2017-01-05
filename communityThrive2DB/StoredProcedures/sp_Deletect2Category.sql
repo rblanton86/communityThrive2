@@ -13,12 +13,8 @@ GO
 -- Description:	Delete Category
 -- =============================================
 CREATE PROCEDURE sp_Deletect2Category
-	@categoryID INT,
-	@categoryParentID INT,
-	@categoryDescription VARCHAR(100),
-	@isUserDefined BIT,
-	@isDeleted BIT,
-	@dateAdded DATETIME
+	@categoryID INT
+	
 
 
 
@@ -28,12 +24,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     
-	UPDATE ct2Category
-	SET 
-		categoryParentID = @categoryParentID,
-		categoryDescription = @categoryDescription,
-		isUserDefined = @isUserDefined,
-		isDeleted = @isDeleted
+	DELETE FROM ct2Category
 
 	WHERE categoryID = @categoryID
 END
