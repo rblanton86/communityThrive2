@@ -8,9 +8,9 @@ Change History:
 USE communityThrive2DB;
 GO
 CREATE PROCEDURE sp_createct2Company
-	   @companyID INT
-	   ,@companyName VARCHAR (150)
+		@companyName VARCHAR (150)
 		,@companyDescription VARCHAR(250)
+		,@companyLocation INT
 		,@companyDemographic VARCHAR(150)
 	 
 AS
@@ -24,19 +24,24 @@ SET NOCOUNT ON;
 INSERT INTO ct2Company (
 		companyName
 	   ,companyDescription
+	   ,companyLocation
 	   ,companyDemographic
 	   )
     VALUES (
 	   @companyName
 	   ,@companyDescription
+	   ,@companyLocation
 	   ,@companyDemographic
 	  )
  
+DECLARE	@companyID INT
+
 SET @companyID = SCOPE_IDENTITY()
  
 SELECT 
 	   companyName = @companyName,
 	   companyDescription	= @companyDescription,
+	   companyLocation = @companyLocation,
 	   companyDemographic = @companyDemographic
 
 FROM ct2Company 

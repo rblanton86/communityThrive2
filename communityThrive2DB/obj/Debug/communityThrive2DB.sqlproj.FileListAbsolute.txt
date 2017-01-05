@@ -3,3 +3,10 @@ C:\Users\Bailey\Documents\GitHub\communityThrive2\communityThrive2DB\bin\Debug\c
 C:\Users\Bailey\Documents\GitHub\communityThrive2\communityThrive2DB\bin\Debug\communityThrive2DB.pdb
 C:\Users\Bailey\Documents\GitHub\communityThrive2\communityThrive2DB\obj\Debug\communityThrive2DB.dll
 C:\Users\Bailey\Documents\GitHub\communityThrive2\communityThrive2DB\obj\Debug\communityThrive2DB.pdb
+Z:\GitHub\communityThrive2\communityThrive2DB\bin\Debug\communityThrive2DB.dacpac
+Z:\GitHub\communityThrive2\communityThrive2DB\obj\Debug\Model.xml
+Z:\GitHub\communityThrive2\communityThrive2DB\obj\Debug\refactor.xml
+Z:\GitHub\communityThrive2\communityThrive2DB\obj\Debug\postdeploy.sql
+Z:\GitHub\communityThrive2\communityThrive2DB\obj\Debug\predeploy.sql
+Z:\GitHub\communityThrive2\communityThrive2DB\obj\Debug\communityThrive2DB.dll
+Z:\GitHub\communityThrive2\communityThrive2DB\obj\Debug\communityThrive2DB.pdb

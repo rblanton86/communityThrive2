@@ -11,6 +11,8 @@ namespace communityThrive2.Models
 
         public string stateDescription { get; set; }
 
+        public int locationID { get; set; }
+
         public cityModel selectedCity { get; set; }
 
         public List<cityModel> cities { get; set; }

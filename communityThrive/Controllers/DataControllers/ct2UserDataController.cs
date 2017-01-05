@@ -45,7 +45,6 @@ namespace communityThrive2.Controllers
             db.AddInParameter(create_User, "@cityIDFK", DbType.Int32, currentUser.cityIDFK);
             db.AddInParameter(create_User, "@stateIDFK", DbType.Int32, currentUser.stateIDFK);
             //db.AddInParameter(create_User, "@geoLocation", DbType.Object, currentUser.geoLocation);
-
             db.AddInParameter(create_User, "@zipcode", DbType.Int32, currentUser.zipcode);
             return currentUser;
         }

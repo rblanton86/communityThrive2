@@ -31,11 +31,13 @@ namespace communityThrive2.Controllers.DataControllers
         {
             ///uses create procedure to insert values into the model parameters
             DbCommand create_Company = db.GetStoredProcCommand("sp_createct2Company");
-            db.AddInParameter(create_Company, "@companyID", DbType.Int32, currentCompany.companyID);
             db.AddInParameter(create_Company, "@companyName", DbType.String, currentCompany.companyName);
-            db.AddInParameter(create_Company, "@stateID", DbType.Int32, currentCompany.companyLocation.stateID);
-            db.AddInParameter(create_Company, "@cityID", DbType.Int32, currentCompany.companyLocation.selectedCity.cityID);
-            db.AddInParameter(create_Company, "@companyDemographic", DbType.Int32, currentCompany.companyDemographic);
+            db.AddInParameter(create_Company, "@companyDescription", DbType.String, currentCompany.companyDescription);
+            db.AddInParameter(create_Company, "@companyLocation", DbType.Int32, currentCompany.companyLocation.locationID);
+            db.AddInParameter(create_Company, "@companyDemographic", DbType.String, currentCompany.companyDemographic);
+
+            db.ExecuteNonQuery(create_Company);
+
             return currentCompany;
         }
 
@@ -55,7 +57,6 @@ namespace communityThrive2.Controllers.DataControllers
                                    companyDescription = drRow.Field<string>("companyDescription"),
                                    //stateID = drRow.Field<geoLocationModel>("stateID"),
                                    //cityID =drRow.Field<geoLocationModel>("cityID"),
-
                                    //companyLocation = drRow.Field<geoLocationModel>("stateID"),
 
                                    companyDemographic = drRow.Field<string>("companyDemographic")

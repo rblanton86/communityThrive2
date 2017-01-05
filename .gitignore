@@ -123,3 +123,9 @@ communityThrive/bin/communityThrive2.pdb
 *.dll
 
 communityThrive/obj/Debug/communityThrive.csproj.FileListAbsolute.txt
+
+communityThrive/obj/Debug/edmxResourcesToEmbed/Models/eventModel.ssdl
+
+communityThrive2DB/communityThrive2DB.sqlproj
+
+communityThrive2DB/.vs/communityThrive2DB/v14/.suo
