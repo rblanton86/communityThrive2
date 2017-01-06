@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 using System.Web.Mvc;
-using communityThrive2.DataControllers;
+using communityThrive2.Controllers.DataControllers;
 using communityThrive2.Models;
 
 namespace communityThrive2.Controllers
@@ -142,11 +145,37 @@ namespace communityThrive2.Controllers
 
         }
 
+
+        //most likely soon to change due to adding of the zipcode feature into the mix 
         public ActionResult companyChoice()
         {
-            
+            //ViewBag.stateModel = companyChoicePopulateState();
             return View();
         }
+
+        [HttpPost]
+        public ActionResult companychoice(zipcodeModel zipcode)
+        {
+            ct2GeoLocationDataController gldc = new ct2GeoLocationDataController("DefaultConnection");
+
+            //add a method from gldc to search for the zipcode the user entered, need to make data controller to handle these actions as well as stored proc
+
+            return View();
+        }
+
+        public SelectList companyChoicePopulateState()
+        {
+            SelectList stateModel;
+
+            ct2GeoLocationDataController gldc = new ct2GeoLocationDataController("DefaultConnection");
+
+            stateModel = gldc.GetListStates();
+
+            return new SelectList(stateModel, "Value", "Text");
+
+        }
+
+        
 
         /// <summary>
         /// end of the user request to join a company methods.
