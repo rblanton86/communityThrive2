@@ -31,21 +31,24 @@ namespace communityThrive2.Controllers
         {
             ///uses create procedure to insert values into the model parameters
             DbCommand create_User = db.GetStoredProcCommand("sp_createct2User");
-            db.AddInParameter(create_User, "@userID", DbType.Int32, currentUser.userID);
+            db.AddInParameter(create_User, "@userID", DbType.String, currentUser.userID);
             db.AddInParameter(create_User, "@roleIDFK", DbType.Int32, currentUser.roleIDFK);
             db.AddInParameter(create_User, "@role", DbType.Int32, currentUser.role);
             db.AddInParameter(create_User, "@companyIDFK", DbType.Int32, currentUser.companyIDFK);
-            db.AddInParameter(create_User, "@company", DbType.Int32, currentUser.company);
-            db.AddInParameter(create_User, "@emailAddress", DbType.Int32, currentUser.emailAddress);
-            db.AddInParameter(create_User, "@userPassword", DbType.Int32, currentUser.userPassword);
-            db.AddInParameter(create_User, "@firstName", DbType.Int32, currentUser.firstName);
-            db.AddInParameter(create_User, "@lastName", DbType.Int32, currentUser.lastName);
-            db.AddInParameter(create_User, "@phoneNumber", DbType.Int32, currentUser.phoneNumber);
-            db.AddInParameter(create_User, "@streetAddress", DbType.Int32, currentUser.streetAddress);
-            db.AddInParameter(create_User, "@cityIDFK", DbType.Int32, currentUser.cityIDFK);
-            db.AddInParameter(create_User, "@stateIDFK", DbType.Int32, currentUser.stateIDFK);
+            db.AddInParameter(create_User, "@company", DbType.String, currentUser.company);
+            db.AddInParameter(create_User, "@emailAddress", DbType.String, currentUser.emailAddress);
+            db.AddInParameter(create_User, "@userPassword", DbType.String, currentUser.userPassword);
+            db.AddInParameter(create_User, "@firstName", DbType.String, currentUser.firstName);
+            db.AddInParameter(create_User, "@lastName", DbType.String, currentUser.lastName);
+            db.AddInParameter(create_User, "@phoneNumber", DbType.String, currentUser.phoneNumber);
+            db.AddInParameter(create_User, "@streetAddress", DbType.String, currentUser.streetAddress);
+            //db.AddInParameter(create_User, "@cityIDFK", DbType.Int32, currentUser.cityIDFK);
+            //db.AddInParameter(create_User, "@stateIDFK", DbType.Int32, currentUser.stateIDFK);
             //db.AddInParameter(create_User, "@geoLocation", DbType.Object, currentUser.geoLocation);
-            db.AddInParameter(create_User, "@zipcode", DbType.Int32, currentUser.zipcode);
+            //db.AddInParameter(create_User, "@zipcode", DbType.Int32, currentUser.zipcode);
+
+            db.ExecuteNonQuery(create_User);
+
             return currentUser;
         }
 
@@ -129,22 +132,22 @@ namespace communityThrive2.Controllers
             return success;
         }
 
-        public List<loginModel> GetLogin()
-        {
-            ///uses read procedure by user ID and returns corresponding values
-            DbCommand get_Login = db.GetStoredProcCommand("sp_selectct2User");
-            db.AddInParameter(get_Login, "@userID", DbType.Int32);
-            DataSet ds = db.ExecuteDataSet(get_Login);
+        //public List<loginModel> GetLogin()
+        //{
+        //    ///uses read procedure by user ID and returns corresponding values
+        //    DbCommand get_Login = db.GetStoredProcCommand("sp_selectct2User");
+        //    db.AddInParameter(get_Login, "@userID", DbType.Int32);
+        //    DataSet ds = db.ExecuteDataSet(get_Login);
 
-            var userLogin = (from drRow in ds.Tables[0].AsEnumerable()
-                            select new loginModel()
-                            {
+        //    var userLogin = (from drRow in ds.Tables[0].AsEnumerable()
+        //                    select new loginModel()
+        //                    {
                                  
-                                emailAddress = drRow.Field<string>("emailAddress"),
-                                userPassword = drRow.Field<string>("userPassword"),
+        //                        emailAddress = drRow.Field<string>("emailAddress"),
+        //                        userPassword = drRow.Field<string>("userPassword"),
 
-                            }).ToList();
-            return userLogin;
-        }
+        //                    }).ToList();
+        //    return userLogin;
+        //}
     }
 }
