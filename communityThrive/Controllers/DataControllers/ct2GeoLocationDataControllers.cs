@@ -70,7 +70,7 @@ namespace communityThrive2.Controllers.DataControllers
                               stateID = drRow.Field<int>("stateID"),
                               stateDescription = drRow.Field<string>("stateDescription"),
                               selectedCity = drRow.Field<cityModel>("selectedCity"),
-                              cities = drRow.Field<cityModel>("cities")
+                              cities = drRow.Field<List<cityModel>>("cities")
 
                           }).ToList();
 

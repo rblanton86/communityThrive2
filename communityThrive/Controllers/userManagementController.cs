@@ -18,53 +18,65 @@ namespace communityThrive2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(loginModel login)
+        public ActionResult Login(loginModel loginCredentials)
         {
-            string email = login.emailAddress;
-            string password = login.userPassword;
+            //    ////create an instance of the user
+             userModel currentUser = new userModel();
+            //    ////create instance of userDataController
+            ct2UserDataController userDataController = new ct2UserDataController("");
 
-            return View(login);
+            //    ////send login credentials to userDataController and set returned user to our current instance
+            currentUser = userDataController.GetLogin(loginCredentials);
+            //    ////call LoggedIn
+            //LoggedIn(currentUser);
+
+            //return RedirectToAction("userHome", "userCommunity");
+
+            //if (currentUser == null)
+            //{
+            //    return View("userLogin");
+            //}
+            //else if (currentUser.companyIDFK > 0)
+
+            //{
+            //    return RedirectToAction("companyHome");  
+            //}
+            //else
+            //{
+            return RedirectToAction("userHome", "userCommunity");
+            //}
+            //userCommunityController ucController = new userCommunityController();
+
+            //return ucController.userHome();
         }
 
         /// <summary>
-        /// if user login is in the system, continue logging in if not return back to current view
+        /// if user login is not in the system return back to current view if not continue logging in
         /// </summary>
 
         [HttpPost]
-        public ActionResult LoggedIn(ct2UserDataController currentUser)
+        public ActionResult LoggedIn(userModel currentUser)
         {
 
             if (currentUser == null)
             {
-                return RedirectToAction("userLoginChoice");
+                return View("userLogin");
+            }
+            else if (currentUser.companyIDFK > 0)
+
+            {
+                return RedirectToAction("companyHome");  // switch ifs
+                //determine if current user belongs to a company
+
+                //if user doesn't belong to a company send user to userHome
+
+                //if user does belong to a company send user to companyHome
             }
             else
             {
-                return View("userLogin");
+                return RedirectToAction("userHome", "userCommunity");
             }
 
-        }
-
-        public ActionResult userLoginChoice()
-        {
-           
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult LogInChoice()
-        {
-            //if ()
-            //{
-            //    return RedirectToAction("Company Homepage");
-            //}
-
-            //else
-            //{
-            //    return RedirectToAction("Manage Company");
-            //}
-
-            return View();
         }
 
         /*

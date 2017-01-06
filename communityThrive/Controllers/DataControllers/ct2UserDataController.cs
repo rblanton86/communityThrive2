@@ -129,22 +129,18 @@ namespace communityThrive2.Controllers
             return success;
         }
 
-        public List<loginModel> GetLogin()
+        public userModel GetLogin(loginModel login)
         {
-            ///uses read procedure by user ID and returns corresponding values
-            DbCommand get_Login = db.GetStoredProcCommand("sp_selectct2User");
-            db.AddInParameter(get_Login, "@userID", DbType.Int32);
+            userModel currentUser = new userModel();
+
+            ///uses read procedure by login properties and returns corresponding user
+            DbCommand get_Login = db.GetStoredProcCommand("sp_readct2LoginUser");
+            db.AddInParameter(get_Login, "@emailAddress", SqlDbType.VarChar, login.emailAddress);
+            db.AddInParameter(get_Login, "@userPassword", SqlDbType.VarChar, login.userPassword);
             DataSet ds = db.ExecuteDataSet(get_Login);
-
-            var userLogin = (from drRow in ds.Tables[0].AsEnumerable()
-                            select new loginModel()
-                            {
-                                 
-                                emailAddress = drRow.Field<string>("emailAddress"),
-                                userPassword = drRow.Field<string>("userPassword"),
-
-                            }).ToList();
-            return userLogin;
+ 
+            return currentUser;
         }
+
     }
 }
