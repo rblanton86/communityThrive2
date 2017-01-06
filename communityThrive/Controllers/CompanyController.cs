@@ -68,10 +68,16 @@ namespace communityThrive2.Controllers
 
                 return View(company);
             }
+
             public ActionResult Save(companyModel model)
             {
 
                 return Json("Success");
+            }
+
+            public ActionResult CompanyHome()
+            {
+            return View();
             }
         }
 }
