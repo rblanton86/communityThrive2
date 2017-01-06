@@ -1,6 +1,6 @@
 /*============================================= 
 Description:      
-CreateProcedureCompanyTable
+CreateProcedureCompanyLogoTable
 Author: Francisco Duran    
 Date: 1-5-17
 Change History:      
@@ -9,7 +9,7 @@ USE communityThrive2DB;
 GO
 CREATE PROCEDURE sp_createct2CompanyLogo
 		@companyIDFK INT
-		,@companyLogo INT
+		,@companyLogo VARBINARY
 		,@dateAdded DATETIME
 		,@isDeleted BIT 
 	 
@@ -22,10 +22,16 @@ SET NOCOUNT ON;
 	
 	BEGIN TRY
 INSERT INTO ct2CompanyLogo (
-		
+		companyIDFK
+		,companyLogo
+		,dateAdded
+		,isDeleted
 	   )
     VALUES (
-	   @
+	   @companyIDFK
+		,@companyLogo
+		,@dateAdded
+		,@isDeleted
 	  )
  
 DECLARE	@companyLogoID INT
@@ -38,7 +44,7 @@ SELECT
 	   ,dateAdded = @dateAdded
 	   ,isDeleted = @isDeleted
 
-FROM ct2Company 
+FROM ct2CompanyLogo
 WHERE  companyLogoID = @companyLogoID
 END TRY
     BEGIN CATCH

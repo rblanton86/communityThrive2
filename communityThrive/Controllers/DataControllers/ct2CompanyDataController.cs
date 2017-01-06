@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Configuration;
@@ -130,8 +131,8 @@ namespace communityThrive2.Controllers.DataControllers
 
             DbCommand insert_CompanyLogo = db.GetStoredProcCommand("sp_createCt2CompanyLogo");
 
-            db.AddInParameter(insert_CompanyLogo, "@companyIDFK", DbType.Int32, currentCompany.companyID);
-            db.AddInParameter(insert_CompanyLogo, "@companyLogo", DbType.Binary, currentCompany.companyLogo);
+             db.AddInParameter(insert_CompanyLogo, "@companyIDFK", DbType.Int32, currentCompany.companyID);
+             db.AddInParameter(insert_CompanyLogo, "@companyLogo", DbType.Binary, currentCompany.companyLogo);
 
             if(db.ExecuteNonQuery(insert_CompanyLogo)>0)
             {

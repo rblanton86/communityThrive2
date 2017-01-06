@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 using System.Web.Mvc;
-using communityThrive2.DataControllers;
+using communityThrive2.Controllers.DataControllers;
 using communityThrive2.Models;
 
 namespace communityThrive2.Controllers
@@ -17,6 +20,7 @@ namespace communityThrive2.Controllers
             return View();
         }
 
+<<<<<<< HEAD
         //[HttpPost]
         //public ActionResult Login(loginModel login)
         //{
@@ -25,46 +29,68 @@ namespace communityThrive2.Controllers
 
         //    return View(login);
         //}
+=======
+        [HttpPost]
+        public ActionResult Login(loginModel loginCredentials)
+        {
+            //    ////create an instance of the user
+             userModel currentUser = new userModel();
+            //    ////create instance of userDataController
+            ct2UserDataController userDataController = new ct2UserDataController("");
+
+            //    ////send login credentials to userDataController and set returned user to our current instance
+            currentUser = userDataController.GetLogin(loginCredentials);
+            //    ////call LoggedIn
+            //LoggedIn(currentUser);
+
+            //return RedirectToAction("userHome", "userCommunity");
+
+            //if (currentUser == null)
+            //{
+            //    return View("userLogin");
+            //}
+            //else if (currentUser.companyIDFK > 0)
+
+            //{
+            //    return RedirectToAction("companyHome");  
+            //}
+            //else
+            //{
+            return RedirectToAction("userHome", "userCommunity");
+            //}
+            //userCommunityController ucController = new userCommunityController();
+
+            //return ucController.userHome();
+        }
+>>>>>>> origin/master
 
         /// <summary>
-        /// if user login is in the system, continue logging in if not return back to current view
+        /// if user login is not in the system return back to current view if not continue logging in
         /// </summary>
 
         [HttpPost]
-        public ActionResult LoggedIn(ct2UserDataController currentUser)
+        public ActionResult LoggedIn(userModel currentUser)
         {
 
             if (currentUser == null)
             {
-                return RedirectToAction("userLoginChoice");
+                return View("userLogin");
+            }
+            else if (currentUser.companyIDFK > 0)
+
+            {
+                return RedirectToAction("companyHome");  // switch ifs
+                //determine if current user belongs to a company
+
+                //if user doesn't belong to a company send user to userHome
+
+                //if user does belong to a company send user to companyHome
             }
             else
             {
-                return View("userLogin");
+                return RedirectToAction("userHome", "userCommunity");
             }
 
-        }
-
-        public ActionResult userLoginChoice()
-        {
-           
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult LogInChoice()
-        {
-            //if ()
-            //{
-            //    return RedirectToAction("Company Homepage");
-            //}
-
-            //else
-            //{
-            //    return RedirectToAction("Manage Company");
-            //}
-
-            return View();
         }
 
         /*
@@ -136,11 +162,37 @@ namespace communityThrive2.Controllers
 
         }
 
+
+        //most likely soon to change due to adding of the zipcode feature into the mix 
         public ActionResult companyChoice()
         {
-            
+            //ViewBag.stateModel = companyChoicePopulateState();
             return View();
         }
+
+        [HttpPost]
+        public ActionResult companychoice(zipcodeModel zipcode)
+        {
+            ct2GeoLocationDataController gldc = new ct2GeoLocationDataController("DefaultConnection");
+
+            //add a method from gldc to search for the zipcode the user entered, need to make data controller to handle these actions as well as stored proc
+
+            return View();
+        }
+
+        public SelectList companyChoicePopulateState()
+        {
+            SelectList stateModel;
+
+            ct2GeoLocationDataController gldc = new ct2GeoLocationDataController("DefaultConnection");
+
+            stateModel = gldc.GetListStates();
+
+            return new SelectList(stateModel, "Value", "Text");
+
+        }
+
+        
 
         /// <summary>
         /// end of the user request to join a company methods.

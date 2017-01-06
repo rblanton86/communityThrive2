@@ -8,6 +8,7 @@ using System.Data.Common;
 using System.Web.Mvc;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using communityThrive2.Models;
+using System.Data.SqlClient;
 using System.Text;
 using System.Xml;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
@@ -49,7 +50,7 @@ namespace communityThrive2.Controllers.DataControllers
         /// <summary>
         /// the end of the constructor for the geolocation controller
         /// </summary>
-        
+
         ///<summary>
         ///The beginning GetLocation method that takes information and populates the geolocation model
         /// </summary>
@@ -69,6 +70,7 @@ namespace communityThrive2.Controllers.DataControllers
 
                               stateID = drRow.Field<int>("stateID"),
                               stateDescription = drRow.Field<string>("stateDescription"),
+                              locationID  = drRow.Field<int>("locationID"),
                               selectedCity = drRow.Field<cityModel>("selectedCity"),
                               cities = drRow.Field<List<cityModel>>("cities")
 
@@ -81,6 +83,34 @@ namespace communityThrive2.Controllers.DataControllers
         ///The end of the GetLocation method 
         /// </summary>
 
+
+        ///<summary>
+        ///the begining of the getliststates method 
+        /// </summary>
+        public SelectList GetListStates()
+        {
+            // Readies stored proc from server.
+            DbCommand GetStates = db.GetStoredProcCommand("sp_GetStates");
+
+            //gets all states from the database
+            // Executes stored proc to return values into a DataSet.
+            DataSet ds = db.ExecuteDataSet(GetStates);
+
+            var states = (from drRow in ds.Tables[0].AsEnumerable()
+                          select new SelectListItem()
+                          {
+
+                              Value = drRow.Field<int>("stateID").ToString(),
+                              Text = drRow.Field<string>("stateDescription"),
+
+                          }).ToList();
+
+            return new SelectList(states, "Value", "Text");
+        }
+
+        ///<summary>
+        ///The end of the GetListStates method 
+        /// </summary>
 
         ///<summary>
         ///The beginning of the GetListCities method that gets all the cities relating to the state selected
@@ -107,39 +137,13 @@ namespace communityThrive2.Controllers.DataControllers
             return cities;
         }
 
+        
+
         ///<summary>
         ///The end of the GetListCities method
         /// </summary>
 
 
-        ///<summary>
-        ///The begining of the GetListStates method that takes all the states from the database and displays them
-        /// </summary>
-        
-        public SelectList GetListStates()
-        {
-            // Readies stored proc from server.
-            DbCommand GetStates = db.GetStoredProcCommand("sp_GetStates");
-
-            //gets all states from the database
-            // Executes stored proc to return values into a DataSet.
-            DataSet ds = db.ExecuteDataSet(GetStates);
-
-            var states = (from drRow in ds.Tables[0].AsEnumerable()
-                          select new SelectListItem()
-                          {
-
-                              Value = drRow.Field<int>("stateID").ToString(),
-                              Text = drRow.Field<string>("stateDescription"),
-
-                          }).ToList();
-
-            return new SelectList(states,"Value","Text");
-        }
-
-        ///<summary>
-        ///The end of the GetListStates method 
-        /// </summary>
 
         ///Create Procedure Data Controller
 

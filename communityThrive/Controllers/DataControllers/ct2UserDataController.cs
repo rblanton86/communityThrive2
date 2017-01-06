@@ -132,6 +132,7 @@ namespace communityThrive2.Controllers
             return success;
         }
 
+<<<<<<< HEAD
         //public List<loginModel> GetLogin()
         //{
         //    ///uses read procedure by user ID and returns corresponding values
@@ -149,5 +150,20 @@ namespace communityThrive2.Controllers
         //                    }).ToList();
         //    return userLogin;
         //}
+=======
+        public userModel GetLogin(loginModel login)
+        {
+            userModel currentUser = new userModel();
+
+            ///uses read procedure by login properties and returns corresponding user
+            DbCommand get_Login = db.GetStoredProcCommand("sp_readct2LoginUser");
+            db.AddInParameter(get_Login, "@emailAddress", SqlDbType.VarChar, login.emailAddress);
+            db.AddInParameter(get_Login, "@userPassword", SqlDbType.VarChar, login.userPassword);
+            DataSet ds = db.ExecuteDataSet(get_Login);
+ 
+            return currentUser;
+        }
+
+>>>>>>> origin/master
     }
 }
