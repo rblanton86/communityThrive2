@@ -1,0 +1,16 @@
+USE communityThrive2DB
+
+
+GO
+
+CREATE TABLE ct2Receipt(
+	receiptID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	userIDFK INT FOREIGN KEY REFERENCES ct2User(userID) NOT NULL,
+	donationIDFK INT FOREIGN KEY REFERENCES ct2Donation(donationID) NOT NULL
+	
+	
+)
+
+GO
+
+
