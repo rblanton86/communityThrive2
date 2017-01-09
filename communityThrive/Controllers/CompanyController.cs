@@ -22,44 +22,44 @@ namespace communityThrive2.Controllers
             return View();
             }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult SaveCompany()
-        {
-            foreach (string upload in Request.Files)
-            {
-                string filename = Request.Files[upload].FileName;
+        //[AcceptVerbs(HttpVerbs.Post)]
+        //public ActionResult SaveCompany()
+        //{
+        //    foreach (string upload in Request.Files)
+        //    {
+        //        string filename = Request.Files[upload].FileName;
 
-                using (var binaryReader = new BinaryReader(Request.Files[upload].InputStream))
-                {
-                    upload = binaryReader.ReadBytes(Request.Files[0].ContentLength);
-                }
-            }
-            companyModel model = new companyModel();
-            cityModel companyCity = new cityModel();
-            companyCity.cityID = 1;
-            companyCity.cityDescription = "Dallas";
+        //        using (var binaryReader = new BinaryReader(Request.Files[upload].InputStream))
+        //        {
+        //            upload = binaryReader.ReadBytes(Request.Files[0].ContentLength);
+        //        }
+        //    }
+        //    companyModel model = new companyModel();
+        //    cityModel companyCity = new cityModel();
+        //    companyCity.cityID = 1;
+        //    companyCity.cityDescription = "Dallas";
 
-            List<cityModel> companyCities = new List<cityModel>();
-            companyCities.Add(companyCity);
+        //    List<cityModel> companyCities = new List<cityModel>();
+        //    companyCities.Add(companyCity);
             
-            geoLocationModel companyLocation = new geoLocationModel();
-            companyLocation.locationID = 1;
-            companyLocation.stateID = 1;
-            companyLocation.stateDescription = "Texas";
-            companyLocation.cities = companyCities;
-            companyLocation.selectedCity = companyCity;
+        //    geoLocationModel companyLocation = new geoLocationModel();
+        //    companyLocation.locationID = 1;
+        //    companyLocation.stateID = 1;
+        //    companyLocation.stateDescription = "Texas";
+        //    companyLocation.cities = companyCities;
+        //    companyLocation.selectedCity = companyCity;
 
-            model.companyLocation = companyLocation;
+        //    model.companyLocation = companyLocation;
 
-            ct2CompanyDataController companyDC = new ct2CompanyDataController("");
-            companyDC.CreateCompany(model);
+        //    ct2CompanyDataController companyDC = new ct2CompanyDataController("");
+        //    companyDC.CreateCompany(model);
            
-            companyDC.insertCompanyLogo(model);
+        //    companyDC.insertCompanyLogo(model);
 
 
 
-                return View(model);
-        }
+        //        return View(model);
+        //}
 
 
             // GET: Company

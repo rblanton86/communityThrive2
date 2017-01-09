@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Web.Mvc;
 using communityThrive2.Controllers.DataControllers;
 using communityThrive2.Models;
+using System.Web.Script.Serialization;
 
 namespace communityThrive2.Controllers
 {
@@ -154,28 +155,66 @@ namespace communityThrive2.Controllers
         }
 
         [HttpPost]
-        public ActionResult companychoice(zipcodeModel zipcode)
+        public ActionResult companyChoice(string userinput)
         {
             ct2GeoLocationDataController gldc = new ct2GeoLocationDataController("DefaultConnection");
 
+            List<companyModel> compmod = gldc.GetListCompanies(userinput);
             //add a method from gldc to search for the zipcode the user entered, need to make data controller to handle these actions as well as stored proc
-
-            return View();
+            //insert below the dazta that needs to be submitted
+            return View(compmod);
         }
 
-        public SelectList companyChoicePopulateState()
-        {
-            SelectList stateModel;
+        //public ActionResult chosenCompany()
+        //{
+        //    return View();
+        //}
 
+        public ActionResult chosenCompany(string companyName)
+        {
             ct2GeoLocationDataController gldc = new ct2GeoLocationDataController("DefaultConnection");
 
-            stateModel = gldc.GetListStates();
+            List<companyModel> compmod2 = gldc.GetListCompanies(companyName);
 
-            return new SelectList(stateModel, "Value", "Text");
-
+            return View(compmod2);
         }
 
-        
+        //public SelectList companyChoicePopulateState()
+        //{
+        //    SelectList stateModel;
+
+        //    ct2GeoLocationDataController gldc = new ct2GeoLocationDataController("DefaultConnection");
+
+        //    stateModel = gldc.GetListStates();
+
+        //    return new SelectList(stateModel, "Value", "Text");
+
+        //}
+
+        //public ActionResult googlezipcode()
+        //{
+        //    var mvcName = typeof(Controller).Assembly.GetName();
+        //    var isMono = Type.GetType("Mono.Runtime") != null;
+
+        //    ViewData["Version"] = mvcName.Version.Major + "." + mvcName.Version.Minor;
+        //    ViewData["Runtime"] = isMono ? "Mono" : ".NET";
+
+        //    var googleLocation = GEOCodeAddress("76051");
+
+        //    googleLocation = ViewBag.googleloc;
+
+        //    return View();
+        //}
+
+        //public static dynamic GEOCodeAddress(String Address)
+        //{
+        //    var address = String.Format("http://maps.google.com/maps/api/geocode/json?address={0}&sensor=false", Address.Replace(" ", "+"));
+        //    var result = new System.Net.WebClient().DownloadString(address);
+        //    JavaScriptSerializer jss = new JavaScriptSerializer();
+        //    return jss.Deserialize<dynamic>(result);
+        //}
+
+
 
         /// <summary>
         /// end of the user request to join a company methods.

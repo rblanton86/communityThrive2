@@ -108,6 +108,29 @@ namespace communityThrive2.Controllers.DataControllers
             return new SelectList(states, "Value", "Text");
         }
 
+        public List<companyModel> GetListCompanies(string companyInput)
+        {
+            // Readies stored proc from server.
+            DbCommand GetCompanies = db.GetStoredProcCommand("sp_GetCompany");
+
+            db.AddInParameter(GetCompanies, "@companyName", DbType.String, companyInput);
+
+            //gets all states from the database
+            // Executes stored proc to return values into a DataSet.
+            DataSet ds = db.ExecuteDataSet(GetCompanies);
+
+            var companies = (from drRow in ds.Tables[0].AsEnumerable()
+                          select new companyModel()
+                          {
+
+                              companyName = drRow.Field<string>("companyName"),
+                              companyDescription = drRow.Field<string>("companyDescription")
+
+                          }).ToList();
+
+            return companies;
+        }
+
         ///<summary>
         ///The end of the GetListStates method 
         /// </summary>
