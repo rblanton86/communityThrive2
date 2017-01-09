@@ -21,6 +21,16 @@ namespace communityThrive2.Controllers
             return View();
         }
 
+<<<<<<< HEAD
+        //[HttpPost]
+        //public ActionResult Login(loginModel login)
+        //{
+        //    string email = login.emailAddress;
+        //    string password = login.userPassword;
+
+        //    return View(login);
+        //}
+=======
         [HttpPost]
         public ActionResult Login(loginModel loginCredentials)
         {
@@ -53,6 +63,7 @@ namespace communityThrive2.Controllers
 
             //return ucController.userHome();
         }
+>>>>>>> origin/master
 
         /// <summary>
         /// if user login is not in the system return back to current view if not continue logging in
@@ -88,30 +99,36 @@ namespace communityThrive2.Controllers
         * */
         //GET:/UserManagement/userRegister
 
-        public ActionResult userRegister(ct2UserDataController CreateUser)
+        public ActionResult userRegister()
         {
+            
             return View();
         }
+
+
         //POST: /UserManagement/userRegister
         [AllowAnonymous]
         [HttpPost]
         public ActionResult Register(FormCollection form)
         {
             userModel usMod = new userModel();
-            roleModel roMod = new roleModel();
-            companyModel compModel = new companyModel();
-            geoLocationModel geoLoca = new geoLocationModel();
-            cityModel citMod = new cityModel();
+            ct2UserDataController inputCurrentUser = new ct2UserDataController("");
 
-            usMod.firstName = form["firstName"];
-            usMod.lastName = form["lastName"];
-            usMod.emailAddress = form["emailAddress"];
-            usMod.streetAddress = form["streetAddress"];
-            citMod.cityDescription = form["cityIDFK"];
-            geoLoca.stateDescription = form["stateIDFK"];
-            usMod.zipcode = Convert.ToInt32(form["zipcode"]);
 
-            return View();
+            usMod.firstName = form["currentModel.firstName"];
+            usMod.lastName = form["currentModel.lastName"].ToString();
+            usMod.phoneNumber =form["currentModel.phoneNumber"].ToString();
+            usMod.emailAddress = form["currentModel.emailAddress"].ToString();
+            usMod.streetAddress = form["currentModel.streetAddress"].ToString();
+            //citMod.cityIDFK = form["cityIDFK"];
+            //geoLoca.stateDescription = form["stateIDFK"];
+            usMod.zipcode = Convert.ToInt32(form["currentModel.zipcode"].ToString());
+            usMod.userPassword = form["currentModel.userPassword"].ToString();
+
+            usMod = inputCurrentUser.CreateUser(usMod);
+
+            return Redirect("~/companyChoice/userManagement");
+                
         }
 
        
