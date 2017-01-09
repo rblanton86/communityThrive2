@@ -40,38 +40,41 @@ namespace communityThrive2.Controllers
             cityModel companyCity = new cityModel();
             companyCity.cityID = 1;
             companyCity.cityDescription = "Dallas";
-
-            List<cityModel> companyCities = new List<cityModel>();
-            companyCities.Add(companyCity);
-            
-            geoLocationModel companyLocation = new geoLocationModel();
-            companyLocation.locationID = 1;
-            companyLocation.stateID = 1;
-            companyLocation.stateDescription = "Texas";
-            companyLocation.cities = companyCities;
-            companyLocation.selectedCity = companyCity;
-
             model.companyLocation = companyLocation;
             model.companyName = Request.Form["companyName"];
             model.companyDescription = Request.Form["companyDescription"];
             model.companyDemographic = Request.Form["companyDemographic"];
             model.companyLogo = byteArray;
+            model.companyLocation = companyLocation;
 
             ct2CompanyDataController companyDC = new ct2CompanyDataController("");
             companyDC.CreateCompany(model);
-           
+
             companyDC.insertCompanyLogo(model);
 
 
 
-                return View(model);
+            return View(model);
         }
 
+
+
+            // GET: Company
+        public ActionResult ManageCompany(companyModel company)
+            {
+
+                return View(company);
+            }
 
             public ActionResult Save(companyModel model)
             {
 
                 return Json("Success");
+            }
+
+            public ActionResult CompanyHome()
+            {
+            return View();
             }
         }
 }

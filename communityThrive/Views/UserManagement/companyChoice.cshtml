@@ -1,6 +1,6 @@
 ﻿@using communityThrive2.Models
 
-@model stateModel
+@model IEnumerable<communityThrive2.Models.companyModel>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml"; //referneces the page layout that is stored in the shared folder
@@ -15,20 +15,65 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div> 
-        <h4>Please Choose the State of the Company.</h4>
+    @*<div>*@ 
+        @*<h4>Please Choose the State of the Company.</h4>*@
         @*display states from the geolocation model*@
-        @Html.DropDownList("stateDescription", (SelectList)ViewBag.stateModel,"Select A State")
+        @*@Html.DropDownList("stateDescription", (SelectList)ViewBag.stateModel,"Select A State")*@
 
-        <h4>Please Choose the City of the Company.</h4>
+        @*<h4>Please Choose the City of the Company.</h4>*@
         @*display the cities from the selected state*@
         @*@Html.DropDownList("Cities", Model.cityDescription)*@
 
-        <h4>Please Choose the Company in the City.</h4>
+        @*<h4>Please Choose the Company in the City.</h4>*@
         @*display companies that are in that state/city*@
         @*@Html.DropDownList("Companies", Model.companyName)*@
 
+        @*<h3>Enter The Name of the company you wish to join</h3>
+        @using (Html.BeginForm("companyChoice","userManagement", FormMethod.Post))
+        {
+            <h3>Please Enter The Company Name</h3>
+            @Html.TextBoxFor(m => m.companyName)
+            <input type="text" value="companyName"/>
+            
+        }*@
 
-    </div>
+
+    @*</div>*@
+  
+        @if (Model == null)
+        {
+            @*<h3>null</h3>*@
+            <form action="companyChoice" method="post">
+                Company Name:
+                <input type="text" name="userInput" />
+                <input type="submit" name="userInput" value="Search" />
+            </form>
+        }
+        else if (Model != null)
+        {
+            @*<h3>not null</h3>*@
+            <form action="companyChoice" method="post">
+                Company Name:
+                <input type="text" name="userInput" />
+                <input type="submit" id="userInput" value="Search" />
+                @foreach (var item in Model)
+                {
+                    <div class="row"  >
+                        <h4> Company Name:</h4>
+                        @item.companyName 
+
+                        <h4> Company Description:</h4>
+                        @item.companyDescription
+
+
+                        <h4></h4>
+                        @Html.ActionLink("Click here to select","chosenCompany","userManagement", new {@item.companyName },null)
+                    </div>
+
+                }
+                                                       
+            </form>
+
+        }
 </body>
 </html>

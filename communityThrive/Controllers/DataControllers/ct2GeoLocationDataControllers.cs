@@ -108,6 +108,29 @@ namespace communityThrive2.Controllers.DataControllers
             return new SelectList(states, "Value", "Text");
         }
 
+        public List<companyModel> GetListCompanies(string companyInput)
+        {
+            // Readies stored proc from server.
+            DbCommand GetCompanies = db.GetStoredProcCommand("sp_GetCompany");
+
+            db.AddInParameter(GetCompanies, "@companyName", DbType.String, companyInput);
+
+            //gets all states from the database
+            // Executes stored proc to return values into a DataSet.
+            DataSet ds = db.ExecuteDataSet(GetCompanies);
+
+            var companies = (from drRow in ds.Tables[0].AsEnumerable()
+                          select new companyModel()
+                          {
+
+                              companyName = drRow.Field<string>("companyName"),
+                              companyDescription = drRow.Field<string>("companyDescription")
+
+                          }).ToList();
+
+            return companies;
+        }
+
         ///<summary>
         ///The end of the GetListStates method 
         /// </summary>
@@ -137,7 +160,52 @@ namespace communityThrive2.Controllers.DataControllers
             return cities;
         }
 
-        
+        //beginning of the methods to send a request from a user to a company
+        public List<userCompanyRequestModel> sendRequestToCompany(string companyName)
+        {
+            DbCommand sendRequest = db.GetStoredProcCommand("sp_makeRequest");
+
+            db.AddInParameter(sendRequest, "@companyName", DbType.String, companyName);
+
+            DataSet ds = db.ExecuteDataSet(sendRequest);
+
+            var requests = (from drRow in ds.Tables[0].AsEnumerable()
+                          select new userCompanyRequestModel()
+                          {
+
+                              userID= drRow.Field<int>("userID"),
+                              firstName = drRow.Field<string>("firstName"),
+                              lastName = drRow.Field<string>("lastName"),
+                              emailAddress = drRow.Field<string>("emailAddress")
+
+                          }).ToList();
+
+            return requests;
+        }
+
+        //reads all requests for a certain company 
+        public List<userCompanyRequestModel> getRequestsToCompany(string companyName)
+        {
+            DbCommand getRequests = db.GetStoredProcCommand("sp_getRequests");
+
+            db.AddInParameter(getRequests, "@companyName", DbType.String, companyName);
+
+            DataSet ds = db.ExecuteDataSet(getRequests);
+
+            var requests = (from drRow in ds.Tables[0].AsEnumerable()
+                            select new userCompanyRequestModel()
+                            {
+
+                                userID = drRow.Field<int>("userID"),
+                                firstName = drRow.Field<string>("firstName"),
+                                lastName = drRow.Field<string>("lastName"),
+                                emailAddress = drRow.Field<string>("emailAddress")
+
+                            }).ToList();
+
+            return requests;
+        }
+
 
         ///<summary>
         ///The end of the GetListCities method

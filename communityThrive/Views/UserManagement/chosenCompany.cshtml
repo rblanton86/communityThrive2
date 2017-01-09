@@ -1,0 +1,24 @@
+﻿@using communityThrive2.Models
+
+@model IEnumerable<communityThrive2.Models.companyModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; //referneces the page layout that is stored in the shared folder
+    ViewBag.Title = "Chosen Company";
+}
+
+<div>
+    @foreach(var item in Model)
+    {
+        <h3>Your Selected Company Name:</h3>
+        @item.companyName
+
+        <h3>Your Selected Company Description</h3>
+        @item.companyDescription
+
+        <h3>Please make sure this information is correct before sending the request!</h3>
+
+        @Html.ActionLink("Finalize Selection", "finalChosenCompany", "userManagement", new { @item.companyName }, null)
+    }
+</div>
+

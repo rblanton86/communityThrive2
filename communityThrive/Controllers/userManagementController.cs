@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Web.Mvc;
 using communityThrive2.Controllers.DataControllers;
 using communityThrive2.Models;
+using System.Web.Script.Serialization;
 
 namespace communityThrive2.Controllers
 {
@@ -19,6 +20,16 @@ namespace communityThrive2.Controllers
            
             return View();
         }
+
+
+        //[HttpPost]
+        //public ActionResult Login(loginModel login)
+        //{
+        //    string email = login.emailAddress;
+        //    string password = login.userPassword;
+
+        //    return View(login);
+        //}
 
         [HttpPost]
         public ActionResult Login(loginModel loginCredentials)
@@ -52,6 +63,7 @@ namespace communityThrive2.Controllers
 
             //return ucController.userHome();
         }
+
 
         /// <summary>
         /// if user login is not in the system return back to current view if not continue logging in
@@ -87,30 +99,36 @@ namespace communityThrive2.Controllers
         * */
         //GET:/UserManagement/userRegister
 
-        public ActionResult userRegister(ct2UserDataController CreateUser)
+        public ActionResult userRegister()
         {
+            
             return View();
         }
+
+
         //POST: /UserManagement/userRegister
         [AllowAnonymous]
         [HttpPost]
         public ActionResult Register(FormCollection form)
         {
             userModel usMod = new userModel();
-            roleModel roMod = new roleModel();
-            companyModel compModel = new companyModel();
-            geoLocationModel geoLoca = new geoLocationModel();
-            cityModel citMod = new cityModel();
+            ct2UserDataController inputCurrentUser = new ct2UserDataController("");
 
-            usMod.firstName = form["firstName"];
-            usMod.lastName = form["lastName"];
-            usMod.emailAddress = form["emailAddress"];
-            usMod.streetAddress = form["streetAddress"];
-            citMod.cityDescription = form["cityIDFK"];
-            geoLoca.stateDescription = form["stateIDFK"];
-            usMod.zipcode = Convert.ToInt32(form["zipcode"]);
 
-            return View();
+            usMod.firstName = form["currentModel.firstName"];
+            usMod.lastName = form["currentModel.lastName"].ToString();
+            usMod.phoneNumber =form["currentModel.phoneNumber"].ToString();
+            usMod.emailAddress = form["currentModel.emailAddress"].ToString();
+            usMod.streetAddress = form["currentModel.streetAddress"].ToString();
+            //citMod.cityIDFK = form["cityIDFK"];
+            //geoLoca.stateDescription = form["stateIDFK"];
+            usMod.zipcode = Convert.ToInt32(form["currentModel.zipcode"].ToString());
+            usMod.userPassword = form["currentModel.userPassword"].ToString();
+
+            usMod = inputCurrentUser.CreateUser(usMod);
+
+            return Redirect("~/companyChoice/userManagement");
+                
         }
 
        
@@ -154,28 +172,77 @@ namespace communityThrive2.Controllers
         }
 
         [HttpPost]
-        public ActionResult companychoice(zipcodeModel zipcode)
+        public ActionResult companyChoice(string userinput)
         {
             ct2GeoLocationDataController gldc = new ct2GeoLocationDataController("DefaultConnection");
 
+            List<companyModel> compmod = gldc.GetListCompanies(userinput);
             //add a method from gldc to search for the zipcode the user entered, need to make data controller to handle these actions as well as stored proc
-
-            return View();
+            //insert below the dazta that needs to be submitted
+            return View(compmod);
         }
 
-        public SelectList companyChoicePopulateState()
-        {
-            SelectList stateModel;
+        //public ActionResult chosenCompany()
+        //{
+        //    return View();
+        //}
 
+        public ActionResult chosenCompany(string companyName)
+        {
             ct2GeoLocationDataController gldc = new ct2GeoLocationDataController("DefaultConnection");
 
-            stateModel = gldc.GetListStates();
+            List<companyModel> compmod2 = gldc.GetListCompanies(companyName);
 
-            return new SelectList(stateModel, "Value", "Text");
-
+            return View(compmod2);
         }
 
-        
+        public ActionResult finalChosenCompany(string companyName)
+        {
+            //write code to send and store user request to company here
+            //make a data controller to send the request to the database
+            //make a page to display requests for the company 
+            //allow the company to assign privilidges for the user
+            //need to make a database table to store the requests and then display them to the company 
+
+            return null;
+        }
+
+        //public SelectList companyChoicePopulateState()
+        //{
+        //    SelectList stateModel;
+
+        //    ct2GeoLocationDataController gldc = new ct2GeoLocationDataController("DefaultConnection");
+
+        //    stateModel = gldc.GetListStates();
+
+        //    return new SelectList(stateModel, "Value", "Text");
+
+        //}
+
+        //public ActionResult googlezipcode()
+        //{
+        //    var mvcName = typeof(Controller).Assembly.GetName();
+        //    var isMono = Type.GetType("Mono.Runtime") != null;
+
+        //    ViewData["Version"] = mvcName.Version.Major + "." + mvcName.Version.Minor;
+        //    ViewData["Runtime"] = isMono ? "Mono" : ".NET";
+
+        //    var googleLocation = GEOCodeAddress("76051");
+
+        //    googleLocation = ViewBag.googleloc;
+
+        //    return View();
+        //}
+
+        //public static dynamic GEOCodeAddress(String Address)
+        //{
+        //    var address = String.Format("http://maps.google.com/maps/api/geocode/json?address={0}&sensor=false", Address.Replace(" ", "+"));
+        //    var result = new System.Net.WebClient().DownloadString(address);
+        //    JavaScriptSerializer jss = new JavaScriptSerializer();
+        //    return jss.Deserialize<dynamic>(result);
+        //}
+
+
 
         /// <summary>
         /// end of the user request to join a company methods.
