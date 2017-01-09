@@ -25,16 +25,18 @@ namespace communityThrive2.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult SaveCompany()
         {
+            companyModel model = new companyModel();
+            byte[] byteArray = null;
+
             foreach (string upload in Request.Files)
             {
+                
                 string filename = Request.Files[upload].FileName;
-
-                using (var binaryReader = new BinaryReader(Request.Files[upload].InputStream))
-                {
-                    upload = binaryReader.ReadBytes(Request.Files[0].ContentLength);
-                }
+                BinaryReader binaryReader = new BinaryReader(Request.Files[upload].InputStream);
+                byteArray = binaryReader.ReadBytes((Request.Files[upload].ContentLength));
+                
             }
-            companyModel model = new companyModel();
+
             cityModel companyCity = new cityModel();
             companyCity.cityID = 1;
             companyCity.cityDescription = "Dallas";
@@ -50,6 +52,10 @@ namespace communityThrive2.Controllers
             companyLocation.selectedCity = companyCity;
 
             model.companyLocation = companyLocation;
+            model.companyName = Request.Form["companyName"];
+            model.companyDescription = Request.Form["companyDescription"];
+            model.companyDemographic = Request.Form["companyDemographic"];
+            model.companyLogo = byteArray;
 
             ct2CompanyDataController companyDC = new ct2CompanyDataController("");
             companyDC.CreateCompany(model);
@@ -62,12 +68,6 @@ namespace communityThrive2.Controllers
         }
 
 
-            // GET: Company
-        public ActionResult ManageCompany(companyModel company)
-            {
-
-                return View(company);
-            }
             public ActionResult Save(companyModel model)
             {
 

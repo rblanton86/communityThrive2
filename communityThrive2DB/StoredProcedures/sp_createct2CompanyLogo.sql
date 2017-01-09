@@ -18,7 +18,9 @@ BEGIN
 SET NOCOUNT ON;
 
     DECLARE @v_error VARCHAR(255),
-    @v_errorNo INT 
+    @v_errorNo INT ,
+	@dateAdded DATETIME = GETDATE(),
+	@isDeleted BIT = 0
 	
 	BEGIN TRY
 INSERT INTO ct2CompanyLogo (

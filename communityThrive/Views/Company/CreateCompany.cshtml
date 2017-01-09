@@ -16,7 +16,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.companyName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.companyName, htmlAttributes: new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.companyName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.companyName, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.companyDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.companyDescription, htmlAttributes: new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.companyDescription, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.companyDescription, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.companyDemographic, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.companyDemographic, htmlAttributes: new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.companyDemographic, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.companyDemographic, "", new { @class = "text-danger" })
@@ -40,16 +40,15 @@
         </div>
 
         <div class="form-group">
-    @Html.LabelFor(model => model.companyLogo, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.ValidationMessageFor(model => model.companyLogo, "", new { @class = "text-danger" })
-        
-    </div>
-</div>
+             @Html.LabelFor(model => model.companyLogo, htmlAttributes: new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                <input  class="form-control" id="userLogo" type="file" name="companyLogo" />
+                @Html.ValidationMessageFor(model => model.companyLogo, "", new { @class = "text-danger" })      
+            </div>
+        </div>
 
             <div class="form-group">
-                <div class="col-md-2 col-md-10">
-                    <input id="ctLogo" type="file" name="companyLogo" />
+                <div class="col-md-offset-2 col-md-10">
                     <input type="submit" name="submit" value="Create">
                 </div>
             </div>
