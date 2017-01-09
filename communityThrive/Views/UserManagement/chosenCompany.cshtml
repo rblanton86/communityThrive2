@@ -15,6 +15,10 @@
 
         <h3>Your Selected Company Description</h3>
         @item.companyDescription
+
+        <h3>Please make sure this information is correct before sending the request!</h3>
+
+        @Html.ActionLink("Finalize Selection", "finalChosenCompany", "userManagement", new { @item.companyName }, null)
     }
 </div>
 

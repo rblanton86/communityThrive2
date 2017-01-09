@@ -42,32 +42,36 @@
   
         @if (Model == null)
         {
-            <h3>null</h3>
+            @*<h3>null</h3>*@
             <form action="companyChoice" method="post">
-                Company Name:<input type="text" name="userInput" />
+                Company Name:
+                <input type="text" name="userInput" />
                 <input type="submit" name="userInput" value="Search" />
             </form>
         }
         else if (Model != null)
         {
-            <h3>not null</h3>
+            @*<h3>not null</h3>*@
             <form action="companyChoice" method="post">
-                Company Name:<input type="text" name="userInput" />
+                Company Name:
+                <input type="text" name="userInput" />
                 <input type="submit" id="userInput" value="Search" />
                 @foreach (var item in Model)
                 {
+                    <div class="row"  >
+                        <h4> Company Name:</h4>
+                        @item.companyName 
 
-                    <h4> Company Name:</h4>
-                    @item.companyName 
+                        <h4> Company Description:</h4>
+                        @item.companyDescription
 
-                    <h4> Company Description:</h4>
-                    @item.companyDescription
 
-                    @Html.ActionLink(@item.companyName,"chosenCompany","userManagement", new {@item.companyName },null)
-
+                        <h4></h4>
+                        @Html.ActionLink("Click here to select","chosenCompany","userManagement", new {@item.companyName },null)
+                    </div>
 
                 }
-
+                                                       
             </form>
 
         }

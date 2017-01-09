@@ -132,7 +132,7 @@ namespace communityThrive2.Controllers
             return success;
         }
 
-<<<<<<< HEAD
+
         //public List<loginModel> GetLogin()
         //{
         //    ///uses read procedure by user ID and returns corresponding values
@@ -150,7 +150,7 @@ namespace communityThrive2.Controllers
         //                    }).ToList();
         //    return userLogin;
         //}
-=======
+
         public userModel GetLogin(loginModel login)
         {
             userModel currentUser = new userModel();
@@ -164,6 +164,6 @@ namespace communityThrive2.Controllers
             return currentUser;
         }
 
->>>>>>> origin/master
+
     }
 }

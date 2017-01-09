@@ -21,7 +21,7 @@ namespace communityThrive2.Controllers
             return View();
         }
 
-<<<<<<< HEAD
+
         //[HttpPost]
         //public ActionResult Login(loginModel login)
         //{
@@ -30,7 +30,7 @@ namespace communityThrive2.Controllers
 
         //    return View(login);
         //}
-=======
+
         [HttpPost]
         public ActionResult Login(loginModel loginCredentials)
         {
@@ -63,7 +63,7 @@ namespace communityThrive2.Controllers
 
             //return ucController.userHome();
         }
->>>>>>> origin/master
+
 
         /// <summary>
         /// if user login is not in the system return back to current view if not continue logging in
@@ -194,6 +194,17 @@ namespace communityThrive2.Controllers
             List<companyModel> compmod2 = gldc.GetListCompanies(companyName);
 
             return View(compmod2);
+        }
+
+        public ActionResult finalChosenCompany(string companyName)
+        {
+            //write code to send and store user request to company here
+            //make a data controller to send the request to the database
+            //make a page to display requests for the company 
+            //allow the company to assign privilidges for the user
+            //need to make a database table to store the requests and then display them to the company 
+
+            return null;
         }
 
         //public SelectList companyChoicePopulateState()

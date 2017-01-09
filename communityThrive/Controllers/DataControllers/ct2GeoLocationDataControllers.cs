@@ -160,7 +160,52 @@ namespace communityThrive2.Controllers.DataControllers
             return cities;
         }
 
-        
+        //beginning of the methods to send a request from a user to a company
+        public List<userCompanyRequestModel> sendRequestToCompany(string companyName)
+        {
+            DbCommand sendRequest = db.GetStoredProcCommand("sp_makeRequest");
+
+            db.AddInParameter(sendRequest, "@companyName", DbType.String, companyName);
+
+            DataSet ds = db.ExecuteDataSet(sendRequest);
+
+            var requests = (from drRow in ds.Tables[0].AsEnumerable()
+                          select new userCompanyRequestModel()
+                          {
+
+                              userID= drRow.Field<int>("userID"),
+                              firstName = drRow.Field<string>("firstName"),
+                              lastName = drRow.Field<string>("lastName"),
+                              emailAddress = drRow.Field<string>("emailAddress")
+
+                          }).ToList();
+
+            return requests;
+        }
+
+        //reads all requests for a certain company 
+        public List<userCompanyRequestModel> getRequestsToCompany(string companyName)
+        {
+            DbCommand getRequests = db.GetStoredProcCommand("sp_getRequests");
+
+            db.AddInParameter(getRequests, "@companyName", DbType.String, companyName);
+
+            DataSet ds = db.ExecuteDataSet(getRequests);
+
+            var requests = (from drRow in ds.Tables[0].AsEnumerable()
+                            select new userCompanyRequestModel()
+                            {
+
+                                userID = drRow.Field<int>("userID"),
+                                firstName = drRow.Field<string>("firstName"),
+                                lastName = drRow.Field<string>("lastName"),
+                                emailAddress = drRow.Field<string>("emailAddress")
+
+                            }).ToList();
+
+            return requests;
+        }
+
 
         ///<summary>
         ///The end of the GetListCities method
