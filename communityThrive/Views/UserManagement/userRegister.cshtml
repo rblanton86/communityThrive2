@@ -40,18 +40,6 @@
         @Html.TextBoxFor(userModel => currentModel.emailAddress)
         @Html.ValidationMessage("Email Address")
     </div>
-   <!-- STRING Street Address -->
- <div>
-        @Html.LabelFor(userModel => currentModel.streetAddress, "Street Address")
-        @Html.TextBoxFor(userModel => currentModel.streetAddress)
-        @Html.ValidationMessage("Street Address")
-    </div>
-    <!--Zipcode-->
-<div>
-        @Html.LabelFor(userModel => currentModel.zipcode, "Zipcode")
-        @Html.TextBoxFor(userModel => currentModel.zipcode)
-        @Html.ValidationMessage("Zipcode")
-    </div>
   <!-- STRING User password -->
   <div>
         @Html.LabelFor(userModel => currentModel.userPassword,"User Password")

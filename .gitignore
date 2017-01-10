@@ -157,3 +157,8 @@ communityThrive/obj/Debug/communityThrive2.csprojResolveAssemblyReference.cache
 communityThrive/obj/Debug/communityThrive2.dll
 
 communityThrive/obj/Debug/communityThrive2.pdb
+
+*.suo
+*.jfm
+communityThrive2DB/communityThrive2DB.jfm
+*.jfm

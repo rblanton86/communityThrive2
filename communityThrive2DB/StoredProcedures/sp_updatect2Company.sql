@@ -5,7 +5,7 @@ Author: Francisco Duran
 Date: 12-12-16
 Change History:      
 =============================================*/
-USE communityThrive2DB;
+USE communityThrive2DB
 GO
 CREATE PROCEDURE sp_updatect2Company
 	   @companyID INT

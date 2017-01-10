@@ -119,11 +119,12 @@ namespace communityThrive2.Controllers
             usMod.lastName = form["currentModel.lastName"].ToString();
             usMod.phoneNumber =form["currentModel.phoneNumber"].ToString();
             usMod.emailAddress = form["currentModel.emailAddress"].ToString();
-            usMod.streetAddress = form["currentModel.streetAddress"].ToString();
-            //citMod.cityIDFK = form["cityIDFK"];
-            //geoLoca.stateDescription = form["stateIDFK"];
-            usMod.zipcode = Convert.ToInt32(form["currentModel.zipcode"].ToString());
             usMod.userPassword = form["currentModel.userPassword"].ToString();
+
+            //companyIDFK
+            //roleIDFK
+            //userAddress
+            //userTypeIDFK
 
             usMod = inputCurrentUser.CreateUser(usMod);
 
