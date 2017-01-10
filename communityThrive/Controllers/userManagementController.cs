@@ -42,26 +42,12 @@ namespace communityThrive2.Controllers
             //    ////send login credentials to userDataController and set returned user to our current instance
             currentUser = userDataController.GetLogin(loginCredentials);
             //    ////call LoggedIn
-            //LoggedIn(currentUser);
+            LoggedIn(currentUser);
 
             //return RedirectToAction("userHome", "userCommunity");
-
-            //if (currentUser == null)
-            //{
-            //    return View("userLogin");
-            //}
-            //else if (currentUser.companyIDFK > 0)
-
-            //{
-            //    return RedirectToAction("companyHome");  
-            //}
-            //else
-            //{
-            return RedirectToAction("userHome", "userCommunity");
-            //}
-            //userCommunityController ucController = new userCommunityController();
-
-            //return ucController.userHome();
+          
+            return View();
+           
         }
 
 
@@ -69,7 +55,6 @@ namespace communityThrive2.Controllers
         /// if user login is not in the system return back to current view if not continue logging in
         /// </summary>
 
-        [HttpPost]
         public ActionResult LoggedIn(userModel currentUser)
         {
 
