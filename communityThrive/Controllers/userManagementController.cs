@@ -21,16 +21,6 @@ namespace communityThrive2.Controllers
             return View();
         }
 
-
-        //[HttpPost]
-        //public ActionResult Login(loginModel login)
-        //{
-        //    string email = login.emailAddress;
-        //    string password = login.userPassword;
-
-        //    return View(login);
-        //}
-
         [HttpPost]
         public ActionResult Login(loginModel loginCredentials)
         {
@@ -42,15 +32,10 @@ namespace communityThrive2.Controllers
             //    ////send login credentials to userDataController and set returned user to our current instance
             currentUser = userDataController.GetLogin(loginCredentials);
             //    ////call LoggedIn
-            LoggedIn(currentUser);
-
-            //return RedirectToAction("userHome", "userCommunity");
           
-            return View();
+            return LoggedIn(currentUser);
            
         }
-
-
         /// <summary>
         /// if user login is not in the system return back to current view if not continue logging in
         /// </summary>
