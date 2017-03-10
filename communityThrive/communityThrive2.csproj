@@ -207,16 +207,30 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\communityThriveDataController.cs" />
+    <Compile Include="Controllers\DataControllers\ct2CategoryDataController.cs" />
+    <Compile Include="Controllers\DataControllers\ct2CompanyDataController.cs" />
+    <Compile Include="Controllers\DataControllers\ct2DonationDataController.cs" />
+    <Compile Include="Controllers\DataControllers\ct2EventDataController.cs" />
+    <Compile Include="Controllers\DataControllers\ct2FamilyMemberDataController.cs" />
+    <Compile Include="Controllers\DataControllers\ct2GeoLocationDataControllers.cs" />
+    <Compile Include="Controllers\DataControllers\ct2InventoryDataController.cs" />
+    <Compile Include="Controllers\DataControllers\ct2InventoryItemDataController.cs" />
+    <Compile Include="Controllers\DataControllers\ct2ReceiptDataController.cs" />
+    <Compile Include="Controllers\DataControllers\ct2RecipientDataController.cs" />
+    <Compile Include="Controllers\DataControllers\ct2RoleDataControllers.cs" />
+    <Compile Include="Controllers\DataControllers\ct2StockDataControllers.cs" />
+    <Compile Include="Controllers\DataControllers\ct2UserDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\userLoginController.cs" />
-    <Compile Include="Controllers\userRequestController.cs" />
+    <Compile Include="Controllers\userCommunityController.cs" />
+    <Compile Include="Controllers\userManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\cityModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\loginModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\categoryModel.cs" />
     <Compile Include="Models\companyModel.cs" />
@@ -229,8 +243,11 @@
     <Compile Include="Models\receiptModel.cs" />
     <Compile Include="Models\recipientModel.cs" />
     <Compile Include="Models\roleModel.cs" />
+    <Compile Include="Models\stateModel.cs" />
     <Compile Include="Models\stockModel.cs" />
+    <Compile Include="Models\userCompanyRequestModel.cs" />
     <Compile Include="Models\userModel.cs" />
+    <Compile Include="Models\zipcodeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -347,6 +364,16 @@
     <Content Include="Views\userRequest\sendRequest.cshtml" />
     <Content Include="Views\userRequest\companyChoice.cshtml" />
     <Content Include="Views\userLogin\userLogin.cshtml" />
+    <Content Include="Views\userCommunity\userHome.cshtml" />
+    <Content Include="Views\UserManagement\chosenCompany.cshtml" />
+    <Content Include="Views\UserManagement\companyChoice.cshtml" />
+    <Content Include="Views\UserManagement\googlezipcode.cshtml" />
+    <Content Include="Views\UserManagement\sendRequest.cshtml" />
+    <Content Include="Views\UserManagement\userLogin.cshtml" />
+    <Content Include="Views\UserManagement\userRegister.cshtml" />
+    <Content Include="Views\Company\CompanyHome.cshtml" />
+    <Content Include="Views\Company\CompanyLogoPartial.cshtml" />
+    <Content Include="Views\Company\CreateCompany.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
